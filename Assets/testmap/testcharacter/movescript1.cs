@@ -15,7 +15,7 @@ public class movescript1 : MonoBehaviour
         
 
         // 이동 벡터 계산
-        Vector3 movement = new Vector3(-1f* horizontalInput, 0f, 0f) * moveSpeed * Time.deltaTime;
+        Vector3 movement = new Vector3(1.5f*horizontalInput, 0f, 0f) * moveSpeed * Time.deltaTime;
 
         // 이동 적용
         transform.Translate(movement, Space.World);
