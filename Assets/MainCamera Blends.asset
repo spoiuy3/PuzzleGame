@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MainCamera Blends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: 1
-    m_To: 2
+  - m_From: 2D
+    m_To: 2.5D
     m_Blend:
       m_Style: 1
       m_Time: 2
@@ -24,8 +24,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: 2
-    m_To: 1
+  - m_From: 2.5D
+    m_To: 2D
     m_Blend:
       m_Style: 1
       m_Time: 2

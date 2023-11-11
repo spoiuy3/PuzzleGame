@@ -34,7 +34,7 @@ public class movescript1 : MonoBehaviour
     void Jump()
     {
         // 플레이어에게 y 방향으로 힘을 주어 점프
-        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce/2, ForceMode.Impulse);
         isGrounded = false; // 점프 후에는 땅에 닿아있지 않음
     }
 
