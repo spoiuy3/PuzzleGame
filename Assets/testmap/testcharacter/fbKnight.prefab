@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6525324}
   - component: {fileID: 5425212}
   - component: {fileID: -3452661414827015386}
+  - component: {fileID: 4697793574329340444}
   - component: {fileID: 11420674}
   m_Layer: 0
   m_Name: fbKnight
@@ -149,6 +150,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 10
+--- !u!114 &4697793574329340444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1968306c51727847879368b476c0f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11420674
 MonoBehaviour:
   m_ObjectHideFlags: 0
