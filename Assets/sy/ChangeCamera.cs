@@ -45,16 +45,18 @@ public class ChangeCamera : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))  // V 키를 눌렀을 때
         {
+            
             SwitchCamera();  // 카메라 전환 함수 호출
         }
         if (isRotating)
         {
             // 서서히 회전
             float step = rotationSpeed * Time.deltaTime;
-            a.transform.rotation = Quaternion.RotateTowards(a.transform.rotation, Quaternion.Euler(0, -90f, targetRotation), step);
+           
+            a.transform.rotation = Quaternion.RotateTowards(a.transform.rotation, Quaternion.Euler(0, a.transform.rotation.eulerAngles.y, targetRotation), step);
 
             // 목표 각도에 도달하면 회전 중지
-            if (Quaternion.Angle(a.transform.rotation, Quaternion.Euler(0, -90f, targetRotation)) < 0.1f)
+            if (Quaternion.Angle(a.transform.rotation, Quaternion.Euler(0, a.transform.rotation.eulerAngles.y, targetRotation)) < 0.1f)
             {
                 isRotating = false;
                 
@@ -66,7 +68,15 @@ public class ChangeCamera : MonoBehaviour
         if (!isRotating)
         {
             // 특정 키를 누르면 회전 시작
-            targetRotation += 90.0f;
+            if (a.transform.rotation.eulerAngles.y==270f)
+            {
+                targetRotation = 90f;
+                
+            }
+            else
+            {
+                targetRotation = -90f;
+            }
             isRotating = true;
         }
 
