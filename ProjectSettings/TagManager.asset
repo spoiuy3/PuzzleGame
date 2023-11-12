@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Obstacle
+  - Blue
+  - Red
+  - Fire2_5on
+  - Fire2_on
+  - Chest
   layers:
   - Default
   - TransparentFX
