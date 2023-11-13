@@ -20,13 +20,14 @@ public class ChangeCamera : MonoBehaviour
 
     public void SwitchCamera()
     {
+
         if (c1.Priority>c2.Priority)  // 현재 Orthographic 투영인 경우
         {
             c1.Priority = 0;  // 2D 카메라 비활성화
             c2.Priority = 1;  // 2.5D 카메라 활성화
             Physics.gravity = new Vector3(0f, 0f, 30f);
             Rotate1();
-
+            StartCoroutine(DelayedFunction());
         }
         else
         {
@@ -34,6 +35,7 @@ public class ChangeCamera : MonoBehaviour
             c2.Priority = 0;  // 2.5D 카메라 활성화
             Physics.gravity = new Vector3(0f, -30f, 0f);
             Rotate2();
+            StartCoroutine(DelayedFunction());
         }
     }
 
@@ -94,5 +96,13 @@ public class ChangeCamera : MonoBehaviour
         }
 
     }
+    IEnumerator DelayedFunction()
+    {
+        // 1초 대기
+        yield return new WaitForSeconds(2f);
 
+        // 여기에 1초 후에 실행될 코드를 넣습니다.
+        Debug.Log("1초 뒤에 실행됨");
+        movescript1.canMove = true;
+    }
 }

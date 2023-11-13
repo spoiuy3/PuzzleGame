@@ -77,13 +77,15 @@ public class interact : MonoBehaviour
         {
             if (redfirecollision && state == "2d")
             {
-
+                movescript1.canMove = false;
                 script.GetComponent<ChangeCamera>().SwitchCamera();
+                
                 state = "2_5d";
 
             }
             if(bluefirecollision && state == "2_5d")
             {
+                movescript1.canMove = false;
                 script.GetComponent<ChangeCamera>().SwitchCamera();
                 state = "2d";
             }
@@ -114,5 +116,5 @@ public class interact : MonoBehaviour
         }
     }
 
-
+    
 }

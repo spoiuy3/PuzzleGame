@@ -10,15 +10,21 @@ public class movescript1 : MonoBehaviour
     private bool isGrounded; // 플레이어가 땅에 닿아 있는지 확인
     public static string level;
     public static bool haveKey;
+    public static bool canMove = true;
+    
 
+    BoxCollider boxCollider;
     void Start()
     {
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
+        boxCollider = GetComponent<BoxCollider>();
+
     }
 
     private void Update()
     {
+        
         if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f)
         {
             Jump();
@@ -37,6 +43,7 @@ public class movescript1 : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 movement;
+        
 
         // 이동 벡터 계산
         if (Physics.gravity.y<0f)
@@ -48,8 +55,10 @@ public class movescript1 : MonoBehaviour
             movement = new Vector3(1.5f* horizontalInput, 1.5f*verticalInput,0f ) * moveSpeed * Time.deltaTime;
         }
 
-
+        
         // 이동 적용
+        if(canMove) { }
+        else { movement = Vector3.zero; }
         transform.Translate(movement, Space.World);
 
         // 점프 처리
@@ -77,57 +86,26 @@ public class movescript1 : MonoBehaviour
         {
             if (movement.x < 0f)
             {
-                if(movement.y > 0f) 
-                {
-                    Vector3 desiredRotation = new Vector3(-45, -90, 90);
-
-                    // 오일러 각도를 쿼터니언으로 변환하여 설정
-                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
-                    transform.rotation = desiredQuaternion;
-                }
-                else if (movement.y < 0f)
-                {
-                    Vector3 desiredRotation = new Vector3(45, -90, 90);
-
-                    // 오일러 각도를 쿼터니언으로 변환하여 설정
-                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
-                    transform.rotation = desiredQuaternion;
-                }
-                else
-                {
+                
+                
                     Vector3 desiredRotation = new Vector3(0, -90, 90);
 
                     // 오일러 각도를 쿼터니언으로 변환하여 설정
                     Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                     transform.rotation = desiredQuaternion;
-                }
+                
             }
             else if(movement.x >0f)
             {
-                if (movement.y > 0f)
-                {
-                    Vector3 desiredRotation = new Vector3(-135, -90, 90);
-
-                    // 오일러 각도를 쿼터니언으로 변환하여 설정
-                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
-                    transform.rotation = desiredQuaternion;
-                }
-                else if (movement.y < 0f)
-                {
+                
+                
                     Vector3 desiredRotation = new Vector3(180, -90, 90);
 
                     // 오일러 각도를 쿼터니언으로 변환하여 설정
                     Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                     transform.rotation = desiredQuaternion;
-                }
-                else
-                {
-                    Vector3 desiredRotation = new Vector3(180, -90, 90);
-
-                    // 오일러 각도를 쿼터니언으로 변환하여 설정
-                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
-                    transform.rotation = desiredQuaternion;
-                }
+                
+                
             }
             else
             {
@@ -154,7 +132,7 @@ public class movescript1 : MonoBehaviour
 
     }
 
-
+    
     void Jump()
     {
         // 플레이어에게 y 방향으로 힘을 주어 점프
@@ -169,6 +147,7 @@ public class movescript1 : MonoBehaviour
         {
             isGrounded = true;
         }
+        
     }
 
     void OnTriggerEnter(Collider collider)
@@ -178,4 +157,6 @@ public class movescript1 : MonoBehaviour
             SceneManager.LoadScene(level);
         }
     }
+
+    
 }
