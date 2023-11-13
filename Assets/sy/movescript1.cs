@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class movescript1 : MonoBehaviour
 {
-    private Rigidbody rb;
-    private Vector3 moveDir;
+    
     private bool isMoving = false;
     [SerializeField, Range(0f, 100f)]
     private float moveSpeed = 5f;
@@ -22,8 +21,7 @@ public class movescript1 : MonoBehaviour
     BoxCollider boxCollider;
     void Start()
     {
-        if (!TryGetComponent(out rb))
-            rb = gameObject.AddComponent<Rigidbody>();
+        
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
         boxCollider = GetComponent<BoxCollider>();
@@ -32,16 +30,8 @@ public class movescript1 : MonoBehaviour
 
     private void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-
-        isMoving = (h != 0f || v != 0f);
-
-        if (isMoving)
-        {
-            moveDir = transform.forward * v + transform.right * h;
-            moveDir.Normalize();
-        }
+        
+        
         if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f)
         {
             Jump();
@@ -51,35 +41,36 @@ public class movescript1 : MonoBehaviour
         {
             StartCoroutine(DelayedFunction());
         }
+
+        
     }
 
     void FixedUpdate()
     {
-
-        // 키 입력 받기
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 movement;
-        
+
 
         // 이동 벡터 계산
-        if (Physics.gravity.y<0f)
+        if (Physics.gravity.y < 0f)
         {
             movement = new Vector3(1.5f * horizontalInput, 0f, 0f) * moveSpeed * Time.deltaTime;
         }
         else
         {
-            movement = new Vector3(1.5f* horizontalInput, 1.5f*verticalInput,0f ) * moveSpeed * Time.deltaTime;
+            movement = new Vector3(1.5f * horizontalInput, 1.5f * verticalInput, 0f) * moveSpeed * Time.deltaTime;
         }
 
-        
+
+
         // 이동 적용
-        if(canMove) { }
+        if (canMove) { }
         else { movement = Vector3.zero; }
+        Debug.Log(canMove);
         transform.Translate(movement, Space.World);
 
         // 점프 처리
-        
         if (Physics.gravity.y < 0f)
         {
             if (movement.x < 0f)
@@ -90,7 +81,7 @@ public class movescript1 : MonoBehaviour
                 Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                 transform.rotation = desiredQuaternion;
             }
-            else if(movement.x > 0f)
+            else if (movement.x > 0f)
             {
                 Vector3 desiredRotation = new Vector3(0, 90, 0);
 
@@ -103,26 +94,26 @@ public class movescript1 : MonoBehaviour
         {
             if (movement.x < 0f)
             {
-                
-                
-                    Vector3 desiredRotation = new Vector3(0, -90, 90);
 
-                    // 오일러 각도를 쿼터니언으로 변환하여 설정
-                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
-                    transform.rotation = desiredQuaternion;
-                
+
+                Vector3 desiredRotation = new Vector3(0, -90, 90);
+
+                // 오일러 각도를 쿼터니언으로 변환하여 설정
+                Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                transform.rotation = desiredQuaternion;
+
             }
-            else if(movement.x >0f)
+            else if (movement.x > 0f)
             {
-                
-                
-                    Vector3 desiredRotation = new Vector3(180, -90, 90);
 
-                    // 오일러 각도를 쿼터니언으로 변환하여 설정
-                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
-                    transform.rotation = desiredQuaternion;
-                
-                
+
+                Vector3 desiredRotation = new Vector3(180, -90, 90);
+
+                // 오일러 각도를 쿼터니언으로 변환하여 설정
+                Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                transform.rotation = desiredQuaternion;
+
+
             }
             else
             {
@@ -142,9 +133,10 @@ public class movescript1 : MonoBehaviour
                     Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                     transform.rotation = desiredQuaternion;
                 }
-                
+
             }
         }
+
 
 
     }

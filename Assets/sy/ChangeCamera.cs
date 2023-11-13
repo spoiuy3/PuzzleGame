@@ -28,7 +28,7 @@ public class ChangeCamera : MonoBehaviour
             c2.Priority = 1;  // 2.5D 카메라 활성화
             Physics.gravity = new Vector3(0f, 0f, 30f);
             Rotate1();
-            StartCoroutine(DelayedFunction());
+            StartCoroutine(DelayedFunction1());
         }
         else
         {
@@ -36,7 +36,7 @@ public class ChangeCamera : MonoBehaviour
             c2.Priority = 0;  // 2.5D 카메라 활성화
             Physics.gravity = new Vector3(0f, -30f, 0f);
             Rotate2();
-            StartCoroutine(DelayedFunction());
+            StartCoroutine(DelayedFunction1());
         }
     }
 
@@ -97,18 +97,11 @@ public class ChangeCamera : MonoBehaviour
         }
 
     }
-    IEnumerator DelayedFunction()
+    IEnumerator DelayedFunction1()
     {
-        if (i == 0)
-        {
-            yield return new WaitForSeconds(0.1f);
-            i++;
-        }
-            
-        else
-        {
-            yield return new WaitForSeconds(2f);
-        }
+        
+        yield return new WaitForSeconds(2f);
+        
 
         // 여기에 1초 후에 실행될 코드를 넣습니다.
         Debug.Log("1초 뒤에 실행됨");
