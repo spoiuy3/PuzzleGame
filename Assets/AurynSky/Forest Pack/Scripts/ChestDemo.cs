@@ -47,6 +47,7 @@ public class ChestDemo : MonoBehaviour {
     {
         chestAnim.SetTrigger("open");
         opened = true;
+        movescript1.haveKey = true;
     }
 
 }

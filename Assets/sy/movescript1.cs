@@ -8,8 +8,8 @@ public class movescript1 : MonoBehaviour
     public float moveSpeed = 5f; // 이동 속도 조절
     public float jumpForce = 10f; // 점프 힘 조절
     private bool isGrounded; // 플레이어가 땅에 닿아 있는지 확인
-    string level;
-    public bool haveKey;
+    public static string level;
+    public static bool haveKey;
 
     void Start()
     {
