@@ -22,8 +22,7 @@ public class ChestDemo : MonoBehaviour {
 
     private void Update()
     {
-        Debug.Log(onTrigger);
-        if(Input.GetKeyDown(KeyCode.K)&&!opened&&interact.state=="2d"&&onTrigger)
+        if(Input.GetKeyDown(KeyCode.F)&&!opened&&interact.state=="2d"&&onTrigger)
         {
             Open();
         }
