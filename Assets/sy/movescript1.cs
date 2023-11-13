@@ -15,6 +15,14 @@ public class movescript1 : MonoBehaviour
         level = SceneManager.GetActiveScene().name;
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f)
+        {
+            Jump();
+        }
+    }
+
     void FixedUpdate()
     {
 
@@ -38,10 +46,7 @@ public class movescript1 : MonoBehaviour
         transform.Translate(movement, Space.World);
 
         // 점프 처리
-        if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y<0f)
-        {
-            Jump();
-        }
+        
         if (Physics.gravity.y < 0f)
         {
             if (movement.x < 0f)
