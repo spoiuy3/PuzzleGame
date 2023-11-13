@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class movescript1 : MonoBehaviour
 {
     public float moveSpeed = 5f; // 이동 속도 조절
     public float jumpForce = 10f; // 점프 힘 조절
     private bool isGrounded; // 플레이어가 땅에 닿아 있는지 확인
+    string level;
+
+    void Start()
+    {
+        level = SceneManager.GetActiveScene().name;
+    }
 
     void Update()
     {
+
         // 키 입력 받기
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -133,6 +141,8 @@ public class movescript1 : MonoBehaviour
 
 
     }
+
+
     void Jump()
     {
         // 플레이어에게 y 방향으로 힘을 주어 점프
@@ -146,6 +156,14 @@ public class movescript1 : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Obstacle"))
+        {
+            SceneManager.LoadScene(level);
         }
     }
 }
