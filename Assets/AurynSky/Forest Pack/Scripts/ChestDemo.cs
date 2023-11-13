@@ -7,6 +7,7 @@ public class ChestDemo : MonoBehaviour {
     //This script goes on the ChestComplete prefab;
 
     public Animator chestAnim; //Animator for the chest;
+    public bool opened;
 
 	// Use this for initialization
 	void Awake ()
@@ -14,22 +15,21 @@ public class ChestDemo : MonoBehaviour {
         //get the Animator component from the chest;
         chestAnim = GetComponent<Animator>();
         //start opening and closing the chest for demo purposes;
-        StartCoroutine(OpenCloseChest());
-	}
-
-
-    IEnumerator OpenCloseChest()
-    {
-        //play open animation;
-        chestAnim.SetTrigger("open");
-        //wait 2 seconds;
-        yield return new WaitForSeconds(2);
-        //play close animation;
-        chestAnim.SetTrigger("close");
-        //wait 2 seconds;
-        yield return new WaitForSeconds(2);
-        //Do it again;
-        StartCoroutine(OpenCloseChest());
-
+        opened = false;
     }
+
+    void OnTriggerStay(Collider collider)
+    {
+        if(collider.gameObject.CompareTag("Player")&&!opened&&Input.GetKeyDown(KeyCode.F))
+        {
+            Open();
+        }
+    }
+
+    void Open()
+    {
+        chestAnim.SetTrigger("open");
+        opened = true;
+    }
+
 }

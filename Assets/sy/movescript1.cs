@@ -9,10 +9,12 @@ public class movescript1 : MonoBehaviour
     public float jumpForce = 10f; // 점프 힘 조절
     private bool isGrounded; // 플레이어가 땅에 닿아 있는지 확인
     string level;
+    public bool haveKey;
 
     void Start()
     {
         level = SceneManager.GetActiveScene().name;
+        haveKey = false;
     }
 
     private void Update()
