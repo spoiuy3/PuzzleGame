@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class movescript1 : MonoBehaviour
 {
-    public float moveSpeed = 5f; // 이동 속도 조절
-    public float jumpForce = 10f; // 점프 힘 조절
+    private Rigidbody rb;
+    private Vector3 moveDir;
+    private bool isMoving = false;
+    [SerializeField, Range(0f, 100f)]
+    private float moveSpeed = 5f;
+
+    [SerializeField, Range(0f, 100f)]
+    private float jumpForce = 5f;
     private bool isGrounded; // 플레이어가 땅에 닿아 있는지 확인
     public static string level;
     public static bool haveKey;
@@ -16,6 +22,8 @@ public class movescript1 : MonoBehaviour
     BoxCollider boxCollider;
     void Start()
     {
+        if (!TryGetComponent(out rb))
+            rb = gameObject.AddComponent<Rigidbody>();
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
         boxCollider = GetComponent<BoxCollider>();
@@ -24,7 +32,21 @@ public class movescript1 : MonoBehaviour
 
     private void Update()
     {
-        
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        isMoving = (h != 0f || v != 0f);
+
+        if (isMoving && Physics.gravity.z>0)
+        {
+            moveDir = transform.forward * h + transform.right * -1* v;
+            moveDir.Normalize();
+        }
+        else
+        {
+            moveDir = transform.forward * h;
+            moveDir.Normalize();
+        }
         if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f)
         {
             Jump();
@@ -32,40 +54,32 @@ public class movescript1 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(level);
+            canMove = false;
+            StartCoroutine(DelayedFunction());
+            
         }
     }
 
     void FixedUpdate()
     {
 
-        // 키 입력 받기
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector3 movement;
-        
-
-        // 이동 벡터 계산
-        if (Physics.gravity.y<0f)
+        if (isMoving && canMove)
         {
-            movement = new Vector3(1.5f * horizontalInput, 0f, 0f) * moveSpeed * Time.deltaTime;
-        }
-        else
-        {
-            movement = new Vector3(1.5f* horizontalInput, 1.5f*verticalInput,0f ) * moveSpeed * Time.deltaTime;
+            Vector3 moveOffset = moveDir * (moveSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(rb.position + moveOffset);
         }
 
-        
-        // 이동 적용
-        if(canMove) { }
-        else { movement = Vector3.zero; }
-        transform.Translate(movement, Space.World);
 
-        // 점프 처리
+       
         
-        if (Physics.gravity.y < 0f)
+
+        
+
+        
+        
+        /*if (Physics.gravity.y < 0f)
         {
-            if (movement.x < 0f)
+            if (rb.velocity.x < 0f)
             {
                 Vector3 desiredRotation = new Vector3(0, -90, 0);
 
@@ -73,7 +87,7 @@ public class movescript1 : MonoBehaviour
                 Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                 transform.rotation = desiredQuaternion;
             }
-            else if(movement.x > 0f)
+            else if(rb.velocity.x > 0f)
             {
                 Vector3 desiredRotation = new Vector3(0, 90, 0);
 
@@ -84,7 +98,7 @@ public class movescript1 : MonoBehaviour
         }
         else
         {
-            if (movement.x < 0f)
+            if (rb.velocity.x < 0f)
             {
                 
                 
@@ -95,7 +109,7 @@ public class movescript1 : MonoBehaviour
                     transform.rotation = desiredQuaternion;
                 
             }
-            else if(movement.x >0f)
+            else if(rb.velocity.x >0f)
             {
                 
                 
@@ -109,7 +123,7 @@ public class movescript1 : MonoBehaviour
             }
             else
             {
-                if (movement.y > 0f)
+                if (rb.velocity.y > 0f)
                 {
                     Vector3 desiredRotation = new Vector3(-90, -90, 90);
 
@@ -117,7 +131,7 @@ public class movescript1 : MonoBehaviour
                     Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                     transform.rotation = desiredQuaternion;
                 }
-                else if (movement.y < 0f)
+                else if (rb.velocity.y < 0f)
                 {
                     Vector3 desiredRotation = new Vector3(90, -90, 90);
 
@@ -127,7 +141,7 @@ public class movescript1 : MonoBehaviour
                 }
                 
             }
-        }
+        }*/
 
 
     }
@@ -154,14 +168,17 @@ public class movescript1 : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Obstacle"))
         {
-            DelayedFunction();
-            SceneManager.LoadScene(level);
+            canMove = false;
+            StartCoroutine(DelayedFunction());
+            
         }
     }
 
     IEnumerator DelayedFunction()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        canMove = true;
+        SceneManager.LoadScene(level);
     }
 
 

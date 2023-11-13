@@ -19074,7 +19074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a20ad1025d80249a94ec121ed7901d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: {fileID: 0}
+  script: {fileID: 110786401}
   redFire: []
   redSmoke: []
   blueFire:
@@ -35173,23 +35173,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498692, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.3000026
+      value: -7.76
       objectReference: {fileID: 0}
     - target: {fileID: 498692, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 498692, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 498692, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 498692, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 498692, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -35201,7 +35201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498692, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 498692, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -43895,6 +43895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestAnim: {fileID: 959034055}
   opened: 0
+  haveKey: 0
 --- !u!1 &959453025 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1696995576100380, guid: 9c55c3f33cde6ea4fbee11ccbd2264eb, type: 3}
