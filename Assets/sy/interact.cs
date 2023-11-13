@@ -9,10 +9,10 @@ public class interact : MonoBehaviour
     public static string state = "2d";
     public static bool redfirecollision = false;
     public static bool bluefirecollision = false;
-    public GameObject redFire;
-    public GameObject redSmoke;
-    public GameObject blueFire;
-    public GameObject blueSmoke;
+    public GameObject[] redFire;
+    public GameObject[] redSmoke;
+    public GameObject[] blueFire;
+    public GameObject[] blueSmoke;
 
     // Update is called once per frame
     void Update()
@@ -20,17 +20,42 @@ public class interact : MonoBehaviour
         
         if(state == "2d")
         {
-            blueFire.SetActive(true);
-            blueSmoke.SetActive(true);
-            redFire.SetActive(false);
-            redSmoke.SetActive(false);
+            foreach (GameObject elem in redFire)
+            {
+                elem.SetActive(false);
+            }
+            foreach (GameObject elem in redSmoke)
+            {
+                elem.SetActive(false);
+            }
+            foreach (GameObject elem in blueFire)
+            {
+                elem.SetActive(true); 
+            }
+            foreach (GameObject elem in blueSmoke)
+            {
+                elem.SetActive(true);
+            }
+            
         }
         if(state == "2_5d")
         {
-            blueFire.SetActive(false);
-            blueSmoke.SetActive(false);
-            redFire.SetActive(true);
-            redSmoke.SetActive(true);
+            foreach (GameObject elem in redFire)
+            {
+                elem.SetActive(true);
+            }
+            foreach (GameObject elem in redSmoke)
+            {
+                elem.SetActive(true);
+            }
+            foreach (GameObject elem in blueFire)
+            {
+                elem.SetActive(false);
+            }
+            foreach (GameObject elem in blueSmoke)
+            {
+                elem.SetActive(false);
+            }
         }
         
         if (Input.GetKeyDown(KeyCode.F))
