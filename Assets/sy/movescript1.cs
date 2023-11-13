@@ -37,14 +37,9 @@ public class movescript1 : MonoBehaviour
 
         isMoving = (h != 0f || v != 0f);
 
-        if (isMoving && Physics.gravity.z>0)
+        if (isMoving)
         {
-            moveDir = transform.forward * h + transform.right * -1* v;
-            moveDir.Normalize();
-        }
-        else
-        {
-            moveDir = transform.forward * h;
+            moveDir = transform.forward * v + transform.right * h;
             moveDir.Normalize();
         }
         if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f)
@@ -54,32 +49,40 @@ public class movescript1 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            canMove = false;
             StartCoroutine(DelayedFunction());
-            
         }
     }
 
     void FixedUpdate()
     {
 
-        if (isMoving && canMove)
+        // 키 입력 받기
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 movement;
+        
+
+        // 이동 벡터 계산
+        if (Physics.gravity.y<0f)
         {
-            Vector3 moveOffset = moveDir * (moveSpeed * Time.fixedDeltaTime);
-            rb.MovePosition(rb.position + moveOffset);
+            movement = new Vector3(1.5f * horizontalInput, 0f, 0f) * moveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            movement = new Vector3(1.5f* horizontalInput, 1.5f*verticalInput,0f ) * moveSpeed * Time.deltaTime;
         }
 
+        
+        // 이동 적용
+        if(canMove) { }
+        else { movement = Vector3.zero; }
+        transform.Translate(movement, Space.World);
 
-       
+        // 점프 처리
         
-
-        
-
-        
-        
-        /*if (Physics.gravity.y < 0f)
+        if (Physics.gravity.y < 0f)
         {
-            if (rb.velocity.x < 0f)
+            if (movement.x < 0f)
             {
                 Vector3 desiredRotation = new Vector3(0, -90, 0);
 
@@ -87,7 +90,7 @@ public class movescript1 : MonoBehaviour
                 Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                 transform.rotation = desiredQuaternion;
             }
-            else if(rb.velocity.x > 0f)
+            else if(movement.x > 0f)
             {
                 Vector3 desiredRotation = new Vector3(0, 90, 0);
 
@@ -98,7 +101,7 @@ public class movescript1 : MonoBehaviour
         }
         else
         {
-            if (rb.velocity.x < 0f)
+            if (movement.x < 0f)
             {
                 
                 
@@ -109,7 +112,7 @@ public class movescript1 : MonoBehaviour
                     transform.rotation = desiredQuaternion;
                 
             }
-            else if(rb.velocity.x >0f)
+            else if(movement.x >0f)
             {
                 
                 
@@ -123,7 +126,7 @@ public class movescript1 : MonoBehaviour
             }
             else
             {
-                if (rb.velocity.y > 0f)
+                if (movement.y > 0f)
                 {
                     Vector3 desiredRotation = new Vector3(-90, -90, 90);
 
@@ -131,7 +134,7 @@ public class movescript1 : MonoBehaviour
                     Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                     transform.rotation = desiredQuaternion;
                 }
-                else if (rb.velocity.y < 0f)
+                else if (movement.y < 0f)
                 {
                     Vector3 desiredRotation = new Vector3(90, -90, 90);
 
@@ -141,7 +144,7 @@ public class movescript1 : MonoBehaviour
                 }
                 
             }
-        }*/
+        }
 
 
     }
@@ -168,14 +171,14 @@ public class movescript1 : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Obstacle"))
         {
-            canMove = false;
-            StartCoroutine(DelayedFunction());
+            DelayedFunction();
             
         }
     }
 
     IEnumerator DelayedFunction()
     {
+        canMove = false;
         yield return new WaitForSeconds(1f);
         canMove = true;
         SceneManager.LoadScene(level);
