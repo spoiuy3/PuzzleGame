@@ -163,7 +163,7 @@ public class movescript1 : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Obstacle"))
         {
-            DelayedFunction();
+            StartCoroutine(DelayedFunction());
             
         }
     }
