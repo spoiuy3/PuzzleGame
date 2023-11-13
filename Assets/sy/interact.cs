@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class interact : MonoBehaviour
@@ -9,16 +11,29 @@ public class interact : MonoBehaviour
     public static string state = "2d";
     public static bool redfirecollision = false;
     public static bool bluefirecollision = false;
+    public static bool haveKey = false;
     public GameObject[] redFire;
     public GameObject[] redSmoke;
     public GameObject[] blueFire;
     public GameObject[] blueSmoke;
+    public GameObject[] chest;
 
+    public bool KeyCheck()
+    {
+        foreach (GameObject elem in chest)
+        {
+            if (!elem.GetComponent<ChestDemo>().haveKey)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     // Update is called once per frame
     void Update()
     {
-        
-        if(state == "2d")
+        haveKey = KeyCheck();
+        if (state == "2d")
         {
             foreach (GameObject elem in redFire)
             {

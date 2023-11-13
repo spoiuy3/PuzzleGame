@@ -19081,6 +19081,8 @@ MonoBehaviour:
   - {fileID: 396826139}
   blueSmoke:
   - {fileID: 2122680232}
+  chest:
+  - {fileID: 959034054}
 --- !u!1 &435478450 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1696995576100380, guid: 9c55c3f33cde6ea4fbee11ccbd2264eb, type: 3}

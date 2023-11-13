@@ -9,10 +9,16 @@ public class ChestDemo : MonoBehaviour {
     public Animator chestAnim; //Animator for the chest;
     public bool opened;
     private bool onTrigger;
-
+    public bool haveKey = false;
+    
+    public bool HaveKey()
+    {
+        return haveKey;
+    }
 	// Use this for initialization
 	void Awake ()
     {
+        haveKey = false;
         //get the Animator component from the chest;
         chestAnim = GetComponent<Animator>();
         //start opening and closing the chest for demo purposes;
@@ -47,7 +53,7 @@ public class ChestDemo : MonoBehaviour {
     {
         chestAnim.SetTrigger("open");
         opened = true;
-        movescript1.haveKey = true;
+        haveKey = true;
     }
 
 }

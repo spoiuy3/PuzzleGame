@@ -17,7 +17,7 @@ public class Red : MonoBehaviour
     {
         level = movescript1.level;
         state = interact.state;
-        if(Input.GetKeyDown(KeyCode.F) && movescript1.haveKey && state == "2_5d" && onTrigger)
+        if(Input.GetKeyDown(KeyCode.F) && interact.haveKey && state == "2_5d" && onTrigger)
         {
             SceneManager.LoadScene((int.Parse(level)+1).ToString());
         }
