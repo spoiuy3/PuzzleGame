@@ -154,9 +154,15 @@ public class movescript1 : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Obstacle"))
         {
+            DelayedFunction();
             SceneManager.LoadScene(level);
         }
     }
 
-    
+    IEnumerator DelayedFunction()
+    {
+        yield return new WaitForSeconds(2f);
+    }
+
+
 }
