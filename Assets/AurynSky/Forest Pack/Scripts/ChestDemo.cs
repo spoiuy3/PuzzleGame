@@ -7,8 +7,7 @@ public class ChestDemo : MonoBehaviour {
     //This script goes on the ChestComplete prefab;
 
     public Animator chestAnim; //Animator for the chest;
-    private bool opened = false;
-    private bool istrig = false;
+    public bool opened;
 
 	// Use this for initialization
 	void Awake ()
@@ -16,35 +15,14 @@ public class ChestDemo : MonoBehaviour {
         //get the Animator component from the chest;
         chestAnim = GetComponent<Animator>();
         //start opening and closing the chest for demo purposes;
-        
+        opened = false;
     }
 
-    private void Update()
+    void OnTriggerStay(Collider collider)
     {
-        Debug.Log(istrig);
-        if (Input.GetKeyDown(KeyCode.F))
+        if(collider.gameObject.CompareTag("Player")&&!opened&&Input.GetKeyDown(KeyCode.F))
         {
-            if(istrig)
-            {
-                Open();
-                
-            }
-        }
-    }
-
-    private void OnTriggerStay(Collider collider)
-    {
-        if(collider.gameObject.CompareTag("Player"))
-        {
-            istrig  = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            istrig = false;
+            Open();
         }
     }
 
