@@ -17,7 +17,7 @@ public class ChangeCamera : MonoBehaviour
 
     
 
-    void SwitchCamera()
+    public void SwitchCamera()
     {
         if (c1.Priority>c2.Priority)  // 현재 Orthographic 투영인 경우
         {
@@ -43,11 +43,7 @@ public class ChangeCamera : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))  // V 키를 눌렀을 때
-        {
-            
-            SwitchCamera();  // 카메라 전환 함수 호출
-        }
+        
         if (isRotating)
         {
             // 서서히 회전

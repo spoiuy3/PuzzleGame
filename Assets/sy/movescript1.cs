@@ -15,7 +15,7 @@ public class movescript1 : MonoBehaviour
         level = SceneManager.GetActiveScene().name;
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
         // 키 입력 받기
@@ -35,7 +35,7 @@ public class movescript1 : MonoBehaviour
 
 
         // 이동 적용
-        transform.position += movement;
+        transform.Translate(movement, Space.World);
 
         // 점프 처리
         if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y<0f)
