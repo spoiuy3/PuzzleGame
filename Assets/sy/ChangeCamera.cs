@@ -10,6 +10,7 @@ public class ChangeCamera : MonoBehaviour
     public CinemachineVirtualCamera c2;
     public GameObject a;
     public string currentState;
+    private int i = 0;
 
     public float rotationSpeed = 90.0f; // 회전 속도 조절
 
@@ -98,8 +99,16 @@ public class ChangeCamera : MonoBehaviour
     }
     IEnumerator DelayedFunction()
     {
-        // 1초 대기
-        yield return new WaitForSeconds(2f);
+        if (i == 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            i++;
+        }
+            
+        else
+        {
+            yield return new WaitForSeconds(2f);
+        }
 
         // 여기에 1초 후에 실행될 코드를 넣습니다.
         Debug.Log("1초 뒤에 실행됨");
