@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/sy/0.unity
     guid: 24ab83d2ee73fe5478f5c45a465031ef
   - enabled: 1
-    path: Assets/sy/1.unity
+    path: Assets/sy/2.unity
     guid: 79ef87cce9eda9440994d82f4c27cd99
   - enabled: 1
-    path: Assets/sy/2.unity
+    path: Assets/sy/1.unity
     guid: 320a5f6c0637cc344a6abcdf7b7c3673
+  - enabled: 1
+    path: Assets/sy/3.unity
+    guid: 613ce05f3faac4c4c808566ae44beb45
   m_configObjects: {}
