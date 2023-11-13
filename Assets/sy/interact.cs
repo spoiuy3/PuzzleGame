@@ -6,7 +6,7 @@ public class interact : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject script;
-    public static string state;
+    public static string state = "2d";
     public static bool redfirecollision = false;
     public static bool bluefirecollision = false;
     public GameObject[] redFire;
