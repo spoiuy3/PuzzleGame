@@ -9,6 +9,7 @@ public class ChangeCamera : MonoBehaviour
     public CinemachineVirtualCamera c1;
     public CinemachineVirtualCamera c2;
     public GameObject a;
+    public string currentState;
 
     public float rotationSpeed = 90.0f; // 회전 속도 조절
 
@@ -37,9 +38,15 @@ public class ChangeCamera : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        interact.state = currentState;
+        if(interact.state == "2d") { Physics.gravity = new Vector3(0f, -30f, 0f); }
+        if (interact.state == "2_5d") { 
+            Physics.gravity = new Vector3(0f, 0f, 30f);
+            SwitchCamera();
+        }
+        
     }
     void Update()
     {
