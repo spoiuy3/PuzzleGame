@@ -13294,7 +13294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1685134394710758, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Fire2_5on
       objectReference: {fileID: 0}
     - target: {fileID: 4278446812860420, guid: b8cd47ec0ed55ef4a81e264386f6aee5, type: 3}
       propertyPath: m_RootOrder
@@ -23174,7 +23174,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 0e5f540077da33c4eab7f0f7f1121747, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Chest
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0e5f540077da33c4eab7f0f7f1121747, type: 3}
       propertyPath: m_RootOrder
@@ -35005,7 +35005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 182500, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 498692, guid: b77fb676a78a39a459fb99111824aabb, type: 3}
       propertyPath: m_LocalScale.x
@@ -46825,7 +46825,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1658952043566594, guid: 72b5f3ccc49ab5c4fa326915f1aabbd8, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Blue
       objectReference: {fileID: 0}
     - target: {fileID: 4953225598066358, guid: 72b5f3ccc49ab5c4fa326915f1aabbd8, type: 3}
       propertyPath: m_RootOrder
@@ -54833,7 +54833,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 55df886252da3624fbe98bce822145ff, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Chest
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 55df886252da3624fbe98bce822145ff, type: 3}
       propertyPath: m_RootOrder
@@ -71687,7 +71687,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1354419093465426, guid: fb6e45a6010fdae4b91b4ccbac21425e, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Red
       objectReference: {fileID: 0}
     - target: {fileID: 4866561659205868, guid: fb6e45a6010fdae4b91b4ccbac21425e, type: 3}
       propertyPath: m_RootOrder
@@ -86807,7 +86807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1032174159222396, guid: a29d452ee24577e46b40bd1b5396acc5, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Fire2_on
       objectReference: {fileID: 0}
     - target: {fileID: 4176845857417626, guid: a29d452ee24577e46b40bd1b5396acc5, type: 3}
       propertyPath: m_RootOrder
