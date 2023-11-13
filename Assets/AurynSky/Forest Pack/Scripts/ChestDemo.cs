@@ -8,6 +8,7 @@ public class ChestDemo : MonoBehaviour {
 
     public Animator chestAnim; //Animator for the chest;
     public bool opened;
+    private bool onTrigger;
 
 	// Use this for initialization
 	void Awake ()
@@ -16,13 +17,30 @@ public class ChestDemo : MonoBehaviour {
         chestAnim = GetComponent<Animator>();
         //start opening and closing the chest for demo purposes;
         opened = false;
+        onTrigger = false;
+    }
+
+    private void Update()
+    {
+        Debug.Log(onTrigger);
+        if(Input.GetKeyDown(KeyCode.K)&&!opened&&interact.state=="2d"&&onTrigger)
+        {
+            Open();
+        }
     }
 
     void OnTriggerStay(Collider collider)
     {
-        if(collider.gameObject.CompareTag("Player")&&!opened&&Input.GetKeyDown(KeyCode.F))
+        if(collider.gameObject.CompareTag("Player"))
         {
-            Open();
+            onTrigger = true;
+        }
+    }
+    void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
+        {
+            onTrigger = false;
         }
     }
 

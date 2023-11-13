@@ -23,6 +23,11 @@ public class movescript1 : MonoBehaviour
         {
             Jump();
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(level);
+        }
     }
 
     void FixedUpdate()
