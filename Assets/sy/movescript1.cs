@@ -24,7 +24,8 @@ public class movescript1 : MonoBehaviour
     private int childNum1;
     private int childNum2;
     Rigidbody rb;
-
+    public float friction = 0.95f; // 빙판에서의 마찰력 조절을 위한 변수
+    public float slideSpeed = 2f;
 
     BoxCollider boxCollider;
     void Start()
@@ -102,16 +103,7 @@ public class movescript1 : MonoBehaviour
 
             }
         }
-        if (Physics.gravity.y < 0f)
-        {
-            if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
-            {
-                rb.velocity = new Vector3(50, 0, 0);
-                
-            }
-            while(rb.velocity != Vector3.zero)
-                rb.velocity -= new Vector3(0.1f, 0, 0);
-        }
+        
 
 
 
@@ -133,10 +125,23 @@ public class movescript1 : MonoBehaviour
         {
             movement = new Vector3(1.5f * horizontalInput, 1.5f * verticalInput, 0f) * moveSpeed * Time.deltaTime;
         }
+        /*movement.x *= friction;
+        
+        if (Physics.gravity.y < 0 )
+        {
+            if (movement.x > 0)
+            {
+                movement += Vector3.right * slideSpeed * Time.deltaTime;
+            }
+            else if (movement.x < 0) {
+                movement += Vector3.left * slideSpeed * Time.deltaTime;
+            }
 
+        }*/
         
 
-        
+
+
         if (Physics.gravity.z != 0f)
         {
             rb.velocity = Vector3.zero;
@@ -148,7 +153,7 @@ public class movescript1 : MonoBehaviour
         if (canMove) { }
         else { movement = Vector3.zero; }
 
-        transform.Translate(movement, Space.World);
+        rb.MovePosition(transform.position + movement);
 
         // 점프 처리
         if (Physics.gravity.y < 0f)
