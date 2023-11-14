@@ -17,12 +17,15 @@ public class movescript1 : MonoBehaviour
     public static bool haveKey;
     public static bool canMove = true;
     Rigidbody rb;
+
+    private bool isdead=false;
     
 
     BoxCollider boxCollider;
     void Start()
     {
-        
+        canMove = true;
+        isdead = false;
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
         boxCollider = GetComponent<BoxCollider>();
@@ -81,7 +84,10 @@ public class movescript1 : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 movement;
 
-
+        if (isdead)
+        {
+            canMove = false;
+        }
         // 이동 벡터 계산
         if (Physics.gravity.y < 0f)
         {
@@ -221,9 +227,10 @@ public class movescript1 : MonoBehaviour
 
     IEnumerator DelayedFunction()
     {
-        canMove = false;
-        yield return new WaitForSeconds(1f);
-        canMove = true;
+        isdead = true;
+        
+        yield return new WaitForSeconds(2.5f);
+        
         SceneManager.LoadScene(level);
     }
 
