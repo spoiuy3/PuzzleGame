@@ -37,6 +37,7 @@ public class interact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         haveKey = KeyCheck();
         if (state == "2d")
         {
@@ -86,15 +87,15 @@ public class interact : MonoBehaviour
                 script.GetComponent<ChangeCamera>().SwitchCamera();
                 StartCoroutine(DelayedFunction());
                 state = "2_5d";
-
+                Debug.Log("2");
             }
-            if (bluefirecollision && state == "2_5d")
+            else if (bluefirecollision && state == "2_5d")
             {
                 movescript1.canMove = false;
                 script.GetComponent<ChangeCamera>().SwitchCamera();
                 StartCoroutine(DelayedFunction());
                 state = "2d";
-
+                Debug.Log("3");
             }
         }
 
@@ -106,7 +107,7 @@ public class interact : MonoBehaviour
         {
             redfirecollision = true;
         }
-        if (other.gameObject.CompareTag("Fire2_on") && Physics.gravity.z > 0)
+        else if (other.gameObject.CompareTag("Fire2_on") && Physics.gravity.z > 0)
         {
             bluefirecollision = true;
         }
@@ -117,7 +118,7 @@ public class interact : MonoBehaviour
         {
             redfirecollision = false;
         }
-        if (other.gameObject.CompareTag("Fire2_on"))
+        else if (other.gameObject.CompareTag("Fire2_on"))
         {
             bluefirecollision = false;
         }
