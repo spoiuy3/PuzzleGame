@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class movescript1 : MonoBehaviour
 {
     
-    private bool isMoving = false;
+    
     [SerializeField, Range(0f, 100f)]
     private float moveSpeed = 5f;
 
@@ -92,7 +92,12 @@ public class movescript1 : MonoBehaviour
             movement = new Vector3(1.5f * horizontalInput, 1.5f * verticalInput, 0f) * moveSpeed * Time.deltaTime;
         }
 
-
+        if (Physics.gravity.z != 0f)
+        {
+            rb.velocity = Vector3.zero;
+        }
+        if (!canMove)
+            rb.velocity = Vector3.zero;
 
         // 이동 적용
         if (canMove) { }
