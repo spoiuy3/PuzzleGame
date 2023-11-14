@@ -9,8 +9,9 @@ public class movescript1 : MonoBehaviour
 
 
     [SerializeField, Range(0f, 100f)]
-    private float moveSpeed = 5f;
-
+    private float moveSpeed2 = 5f;
+        [SerializeField, Range(0f, 100f)]
+    private float moveSpeed25 = 5f;
     [SerializeField, Range(0f, 100f)]
     private float jumpForce = 5f;
     private bool isGrounded; // 플레이어가 땅에 닿아 있는지 확인
@@ -119,13 +120,15 @@ public class movescript1 : MonoBehaviour
         // 이동 벡터 계산
         if (Physics.gravity.y < 0f)
         {
-            movement = new Vector3(1.5f * horizontalInput, 0f, 0f) * moveSpeed * Time.deltaTime;
+            
+            movement = new Vector3(1.5f * horizontalInput, 0f, 0f) * moveSpeed2 * Time.deltaTime;
+            movement.x *= friction;
         }
         else
         {
-            movement = new Vector3(1.5f * horizontalInput, 1.5f * verticalInput, 0f) * moveSpeed * Time.deltaTime;
+            movement = new Vector3(1.5f * horizontalInput, 1.5f * verticalInput, 0f) * moveSpeed25 * Time.deltaTime;
         }
-        movement.x *= friction;
+        
         
         if (Physics.gravity.y < 0 )
         {
@@ -152,9 +155,15 @@ public class movescript1 : MonoBehaviour
         // 이동 적용
         if (canMove) { }
         else { movement = Vector3.zero; }
-
-        rb.MovePosition(transform.position + movement);
-
+        if(Physics.gravity.y < 0)
+        {
+            rb.MovePosition(transform.position + movement);
+        }
+        else
+        {
+            transform.position += movement;
+        }
+        
         // 점프 처리
         if (Physics.gravity.y < 0f)
         {
