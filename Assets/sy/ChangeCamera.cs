@@ -100,11 +100,11 @@ public class ChangeCamera : MonoBehaviour
     IEnumerator DelayedFunction1()
     {
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.7f);
         
 
-        // 여기에 1초 후에 실행될 코드를 넣습니다.
-        Debug.Log("1초 뒤에 실행됨");
+        
+        Debug.Log("1.7초 뒤에 실행됨");
         movescript1.canMove = true;
     }
 }

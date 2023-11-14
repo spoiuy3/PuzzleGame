@@ -50,15 +50,15 @@ public class interact : MonoBehaviour
             }
             foreach (GameObject elem in blueFire)
             {
-                elem.SetActive(true); 
+                elem.SetActive(true);
             }
             foreach (GameObject elem in blueSmoke)
             {
                 elem.SetActive(true);
             }
-            
+
         }
-        if(state == "2_5d")
+        if (state == "2_5d")
         {
             foreach (GameObject elem in redFire)
             {
@@ -77,27 +77,27 @@ public class interact : MonoBehaviour
                 elem.SetActive(false);
             }
         }
-        
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (redfirecollision && state == "2d")
             {
                 movescript1.canMove = false;
                 script.GetComponent<ChangeCamera>().SwitchCamera();
-                rb.velocity = Vector3.zero;
+                StartCoroutine(DelayedFunction());
                 state = "2_5d";
 
             }
-            if(bluefirecollision && state == "2_5d")
+            if (bluefirecollision && state == "2_5d")
             {
                 movescript1.canMove = false;
                 script.GetComponent<ChangeCamera>().SwitchCamera();
-                rb.velocity = Vector3.zero;
+                StartCoroutine(DelayedFunction());
                 state = "2d";
 
             }
         }
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -113,15 +113,20 @@ public class interact : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Fire2_5on") )
+        if (other.gameObject.CompareTag("Fire2_5on"))
         {
             redfirecollision = false;
         }
-        if (other.gameObject.CompareTag("Fire2_on") )
+        if (other.gameObject.CompareTag("Fire2_on"))
         {
             bluefirecollision = false;
         }
     }
 
-    
+    IEnumerator DelayedFunction()
+    {
+
+        yield return new WaitForSeconds(0.3f);
+        rb.velocity = Vector3.zero;
+    }
 }
