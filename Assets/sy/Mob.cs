@@ -8,16 +8,20 @@ public class Mob : MonoBehaviour
     public float spawnInterval = 2f;
     public float moveSpeed = 5f;
     public float destroyDelay = 10f;
-    public Vector3 a;
+    public Vector3 angle;
 
     void Start()
     {
         // 2초마다 SpawnObject 함수를 반복 호출
         InvokeRepeating("SpawnObject", 0f, spawnInterval);
-        Tracker.a = a;
+        
     }
 
-    
+    private void Update()
+    {
+        Tracker.a = angle;
+    }
+
     void SpawnObject()
     {
         // objectToSpawn을 현재 스폰 위치에 생성

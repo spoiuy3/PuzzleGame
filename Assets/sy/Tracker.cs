@@ -9,7 +9,7 @@ public class Tracker : MonoBehaviour
     public float trackingSpeed = 5f;
     Rigidbody rb;
     public static Vector3 a; 
-    public Vector3 b;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,13 +24,13 @@ public class Tracker : MonoBehaviour
         if (Physics.gravity.z != 0)
         {
             
-
+           
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, trackingSpeed * Time.deltaTime);
             
         }
         else
         {
-             transform.position += -a * trackingSpeed * 0.005f;
+             transform.position += a * trackingSpeed * 0.0025f;
         }
     }
 

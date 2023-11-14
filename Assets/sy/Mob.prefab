@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4923737446386233531}
   m_Layer: 0
   m_Name: Mob
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,4 +150,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 4038067753805166564, guid: a421dfbf97b2b0444b4577c60e2a0e69, type: 3}
   trackingSpeed: 5
-  a: {x: 1, y: 0, z: 0}
