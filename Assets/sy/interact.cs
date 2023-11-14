@@ -12,6 +12,7 @@ public class interact : MonoBehaviour
     public static bool redfirecollision = false;
     public static bool bluefirecollision = false;
     public static bool haveKey = false;
+    Rigidbody rb;
     public GameObject[] redFire;
     public GameObject[] redSmoke;
     public GameObject[] blueFire;
@@ -28,6 +29,10 @@ public class interact : MonoBehaviour
             }
         }
         return true;
+    }
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
     void Update()
@@ -79,7 +84,7 @@ public class interact : MonoBehaviour
             {
                 movescript1.canMove = false;
                 script.GetComponent<ChangeCamera>().SwitchCamera();
-                
+                rb.velocity = Vector3.zero;
                 state = "2_5d";
 
             }
@@ -87,7 +92,9 @@ public class interact : MonoBehaviour
             {
                 movescript1.canMove = false;
                 script.GetComponent<ChangeCamera>().SwitchCamera();
+                rb.velocity = Vector3.zero;
                 state = "2d";
+
             }
         }
         
