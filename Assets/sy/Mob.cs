@@ -5,8 +5,8 @@ using UnityEngine;
 public class Mob : MonoBehaviour
 {
     public GameObject mob;
-    public float spawnInterval = 2f;
-    public float moveSpeed = 5f;
+    public float spawnInterval = 15f;
+    
     public float destroyDelay = 10f;
     public Vector3 angle;
 
