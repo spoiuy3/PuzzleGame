@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 
 public class movescript1 : MonoBehaviour
 {
-    
-    
+
+
     [SerializeField, Range(0f, 100f)]
     private float moveSpeed = 5f;
 
@@ -24,7 +24,7 @@ public class movescript1 : MonoBehaviour
     private int childNum1;
     private int childNum2;
     Rigidbody rb;
-    
+
 
     BoxCollider boxCollider;
     void Start()
@@ -49,14 +49,14 @@ public class movescript1 : MonoBehaviour
         haveKey = false;
         boxCollider = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
-        
+
     }
 
     private void Update()
     {
-        
-        
-        
+
+
+
         if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f && canMove)
         {
             Jump();
@@ -77,35 +77,35 @@ public class movescript1 : MonoBehaviour
             */
             StartCoroutine(DelayedFunction());
         }
-        RaycastHit hit1,hit2;
-        if (Physics.Raycast(transform.position, Vector3.right, out hit1, 1f)&&Physics.gravity.y<0f) // 여기에서 1.0f는 레이의 길이입니다.
+        RaycastHit hit1, hit2;
+        if (Physics.Raycast(transform.position, Vector3.right, out hit1, 1f) && Physics.gravity.y < 0f) // 여기에서 1.0f는 레이의 길이입니다.
         {
             // 충돌한 물체가 벽인지 확인합니다.
-            if (hit1.collider.tag == "Ground" ) // 벽의 태그에 맞게 수정하세요.
+            if (hit1.collider.tag == "Ground") // 벽의 태그에 맞게 수정하세요.
             {
                 Debug.Log("벽과 충돌했습니다!");
-                
-                Vector3 move = new Vector3(0.1f,0,0);
+
+                Vector3 move = new Vector3(0.1f, 0, 0);
                 transform.position -= move;
-                
+
             }
         }
         if (Physics.Raycast(transform.position, Vector3.left, out hit2, 1f) && Physics.gravity.y < 0f) // 여기에서 1.0f는 레이의 길이입니다.
         {
             // 충돌한 물체가 벽인지 확인합니다.
-            if (hit2.collider.tag == "Ground" ) // 벽의 태그에 맞게 수정하세요.
+            if (hit2.collider.tag == "Ground") // 벽의 태그에 맞게 수정하세요.
             {
                 Debug.Log("벽과 충돌했습니다!");
-                
+
                 Vector3 move = new Vector3(-0.1f, 0, 0);
                 transform.position -= move;
-                
+
             }
         }
 
-        
-            
-        
+
+
+
     }
 
     void FixedUpdate()
@@ -135,7 +135,7 @@ public class movescript1 : MonoBehaviour
         // 이동 적용
         if (canMove) { }
         else { movement = Vector3.zero; }
-        
+
         transform.Translate(movement, Space.World);
 
         // 점프 처리
@@ -209,27 +209,27 @@ public class movescript1 : MonoBehaviour
 
     }
 
-    
+
     void Jump()
     {
         // 플레이어에게 y 방향으로 힘을 주어 점프
-        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce/2, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce / 2, ForceMode.Impulse);
         isGrounded = false; // 점프 후에는 땅에 닿아있지 않음
     }
 
     void OnCollisionEnter(Collision collision)
     {
         // 땅에 닿아 있는지 확인
-        if (collision.gameObject.CompareTag("Ground") )
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }
-        
+
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") )
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }
@@ -237,7 +237,7 @@ public class movescript1 : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") )
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
         }
@@ -269,5 +269,5 @@ public class movescript1 : MonoBehaviour
         SceneManager.LoadScene(level);
     }
 
-    
+
 }
