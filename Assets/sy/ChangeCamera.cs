@@ -10,7 +10,7 @@ public class ChangeCamera : MonoBehaviour
     public CinemachineVirtualCamera c2;
     public GameObject a;
     public string currentState;
-    private int i = 0;
+    
 
     public float rotationSpeed = 90.0f; // 회전 속도 조절
 

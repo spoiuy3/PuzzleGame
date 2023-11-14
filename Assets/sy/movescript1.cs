@@ -32,7 +32,7 @@ public class movescript1 : MonoBehaviour
     {
         
         
-        if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f)
+        if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f && canMove)
         {
             Jump();
         }
@@ -67,7 +67,7 @@ public class movescript1 : MonoBehaviour
         // 이동 적용
         if (canMove) { }
         else { movement = Vector3.zero; }
-        Debug.Log(canMove);
+        
         transform.Translate(movement, Space.World);
 
         // 점프 처리
