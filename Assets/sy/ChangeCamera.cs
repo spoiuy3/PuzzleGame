@@ -48,10 +48,12 @@ public class ChangeCamera : MonoBehaviour
 
         interact.state = currentState;
         
-        if(interact.state == "2d") { Physics.gravity = new Vector3(0f, -30f, 0f); }
-        if (interact.state == "2_5d") { 
+        if(interact.state == "2d") { Physics.gravity = new Vector3(0f, -30f, 0f);
+            
+        }
+        else if (interact.state == "2_5d") { 
             Physics.gravity = new Vector3(0f, 0f, 30f);
-            SwitchCamera();
+           
         }
         
     }
