@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class movescript1 : MonoBehaviour
 {
@@ -16,13 +17,34 @@ public class movescript1 : MonoBehaviour
     public static string level;
     public static bool haveKey;
     public static bool canMove = true;
+    public GameObject background;
+    //public GameObject ground;
+    private GameObject[] backgrounds;
+    //private GameObject[] grounds;
+    private int childNum1;
+    private int childNum2;
     Rigidbody rb;
     
 
     BoxCollider boxCollider;
     void Start()
     {
-        
+        // background 자식들 넣어주기
+        childNum1 = background.transform.childCount;
+        //childNum2 = ground.transform.childCount;
+        backgrounds = new GameObject[childNum1];
+        //grounds = new GameObject[childNum2];
+        for (int i = 0; i < childNum1; i++)
+        {
+            backgrounds[i] = background.transform.GetChild(i).gameObject;
+        }
+        /*
+        for (int i = 0; i < childNum2; i++)
+        {
+            grounds[i] = ground.transform.GetChild(i).gameObject;
+        }
+        */
+
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
         boxCollider = GetComponent<BoxCollider>();
@@ -42,6 +64,17 @@ public class movescript1 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            canMove = false;
+            for (int i = 0; i < childNum1; i++)
+            {
+                backgrounds[i].GetComponent<Rigidbody>().isKinematic = false;
+            }
+            /*
+            for (int i = 0; i < childNum2; i++)
+            {
+                grounds[i].GetComponent<Rigidbody>().isKinematic = false;
+            }
+            */
             StartCoroutine(DelayedFunction());
         }
         RaycastHit hit1,hit2;
@@ -214,15 +247,24 @@ public class movescript1 : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Obstacle"))
         {
+            canMove = false;
+            for (int i = 0; i < childNum1; i++)
+            {
+                backgrounds[i].GetComponent<Rigidbody>().isKinematic = false;
+            }
+            /*
+            for (int i = 0; i < childNum2; i++)
+            {
+                grounds[i].GetComponent<Rigidbody>().isKinematic = false;
+            }
+            */
             StartCoroutine(DelayedFunction());
-            
         }
     }
 
     IEnumerator DelayedFunction()
     {
-        canMove = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2.5f);
         canMove = true;
         SceneManager.LoadScene(level);
     }
