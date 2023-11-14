@@ -102,7 +102,16 @@ public class movescript1 : MonoBehaviour
 
             }
         }
-
+        if (Physics.gravity.y < 0f)
+        {
+            if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
+            {
+                rb.velocity = new Vector3(50, 0, 0);
+                
+            }
+            while(rb.velocity != Vector3.zero)
+                rb.velocity -= new Vector3(0.1f, 0, 0);
+        }
 
 
 
@@ -125,14 +134,9 @@ public class movescript1 : MonoBehaviour
             movement = new Vector3(1.5f * horizontalInput, 1.5f * verticalInput, 0f) * moveSpeed * Time.deltaTime;
         }
 
-        if(Physics.gravity.y < 0f)
-        {
-            if (Input.GetKeyUp(KeyCode.RightArrow)||Input.GetKeyUp(KeyCode.D))
-            {
-                rb.velocity = new Vector3(1, 0, 0);
-            }
-        }
+        
 
+        
         if (Physics.gravity.z != 0f)
         {
             rb.velocity = Vector3.zero;
