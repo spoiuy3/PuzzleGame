@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/sy/0.unity
+    path: Assets/sy/Winter sample.unity
     guid: 24ab83d2ee73fe5478f5c45a465031ef
   - enabled: 1
     path: Assets/sy/2.unity
