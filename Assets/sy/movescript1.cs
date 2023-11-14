@@ -32,7 +32,7 @@ public class movescript1 : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(isGrounded);
+        
         
         
         if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f && canMove)
@@ -187,8 +187,7 @@ public class movescript1 : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // ¶¥¿¡ ´ê¾Æ ÀÖ´ÂÁö È®ÀÎ
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Blue") 
-            || collision.gameObject.CompareTag("Red"))
+        if (collision.gameObject.CompareTag("Ground") )
         {
             isGrounded = true;
         }

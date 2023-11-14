@@ -24,16 +24,16 @@ public class ChangeCamera : MonoBehaviour
 
         if (c1.Priority>c2.Priority)  // 현재 Orthographic 투영인 경우
         {
-            c1.Priority = 0;  // 2D 카메라 비활성화
-            c2.Priority = 1;  // 2.5D 카메라 활성화
+            c1.Priority = 0;  
+            c2.Priority = 1;  
             Physics.gravity = new Vector3(0f, 0f, 30f);
             Rotate1();
             StartCoroutine(DelayedFunction1());
         }
         else
         {
-            c1.Priority = 1;  // 2D 카메라 비활성화
-            c2.Priority = 0;  // 2.5D 카메라 활성화
+            c1.Priority = 1;  
+            c2.Priority = 0;  
             Physics.gravity = new Vector3(0f, -30f, 0f);
             Rotate2();
             StartCoroutine(DelayedFunction1());
@@ -43,7 +43,9 @@ public class ChangeCamera : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         interact.state = currentState;
+        
         if(interact.state == "2d") { Physics.gravity = new Vector3(0f, -30f, 0f); }
         if (interact.state == "2_5d") { 
             Physics.gravity = new Vector3(0f, 0f, 30f);
@@ -101,9 +103,6 @@ public class ChangeCamera : MonoBehaviour
     {
         
         yield return new WaitForSeconds(1.7f);
-        
-
-        
         Debug.Log("1.7초 뒤에 실행됨");
         movescript1.canMove = true;
     }
