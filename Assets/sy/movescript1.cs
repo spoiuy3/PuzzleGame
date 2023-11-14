@@ -16,6 +16,7 @@ public class movescript1 : MonoBehaviour
     public static string level;
     public static bool haveKey;
     public static bool canMove = true;
+    Rigidbody rb;
     
 
     BoxCollider boxCollider;
@@ -25,11 +26,13 @@ public class movescript1 : MonoBehaviour
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
         boxCollider = GetComponent<BoxCollider>();
-
+        rb = GetComponent<Rigidbody>();
+        
     }
 
     private void Update()
     {
+        Debug.Log(isGrounded);
         
         
         if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f && canMove)
@@ -41,7 +44,34 @@ public class movescript1 : MonoBehaviour
         {
             StartCoroutine(DelayedFunction());
         }
+        RaycastHit hit1,hit2;
+        if (Physics.Raycast(transform.position, Vector3.right, out hit1, 1f)&&Physics.gravity.y<0f) // 여기에서 1.0f는 레이의 길이입니다.
+        {
+            // 충돌한 물체가 벽인지 확인합니다.
+            if (hit1.collider.tag == "Ground" ) // 벽의 태그에 맞게 수정하세요.
+            {
+                Debug.Log("벽과 충돌했습니다!");
+                
+                Vector3 move = new Vector3(0.1f,0,0);
+                transform.position -= move;
+                
+            }
+        }
+        if (Physics.Raycast(transform.position, Vector3.left, out hit2, 1f) && Physics.gravity.y < 0f) // 여기에서 1.0f는 레이의 길이입니다.
+        {
+            // 충돌한 물체가 벽인지 확인합니다.
+            if (hit2.collider.tag == "Ground" ) // 벽의 태그에 맞게 수정하세요.
+            {
+                Debug.Log("벽과 충돌했습니다!");
+                
+                Vector3 move = new Vector3(-0.1f, 0, 0);
+                transform.position -= move;
+                
+            }
+        }
 
+        
+            
         
     }
 
@@ -152,11 +182,28 @@ public class movescript1 : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // 땅에 닿아 있는지 확인
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Blue") 
+            || collision.gameObject.CompareTag("Red"))
         {
             isGrounded = true;
         }
         
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") )
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") )
+        {
+            isGrounded = false;
+        }
     }
 
     void OnTriggerEnter(Collider collider)
@@ -176,5 +223,5 @@ public class movescript1 : MonoBehaviour
         SceneManager.LoadScene(level);
     }
 
-
+    
 }

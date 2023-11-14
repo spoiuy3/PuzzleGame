@@ -100,7 +100,7 @@ public class ChangeCamera : MonoBehaviour
     IEnumerator DelayedFunction1()
     {
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         
 
         // 여기에 1초 후에 실행될 코드를 넣습니다.
