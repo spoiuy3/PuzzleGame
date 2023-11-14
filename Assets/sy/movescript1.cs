@@ -125,7 +125,7 @@ public class movescript1 : MonoBehaviour
         {
             movement = new Vector3(1.5f * horizontalInput, 1.5f * verticalInput, 0f) * moveSpeed * Time.deltaTime;
         }
-        /*movement.x *= friction;
+        movement.x *= friction;
         
         if (Physics.gravity.y < 0 )
         {
@@ -137,7 +137,7 @@ public class movescript1 : MonoBehaviour
                 movement += Vector3.left * slideSpeed * Time.deltaTime;
             }
 
-        }*/
+        }
         
 
 
