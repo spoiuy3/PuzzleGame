@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using static UnityEditor.Rendering.FilterWindow;
 
 public class movescript1 : MonoBehaviour
 {
@@ -132,11 +133,11 @@ public class movescript1 : MonoBehaviour
         
         if (Physics.gravity.y < 0 )
         {
-            if (movement.x > 0)
+            if (movement.x > 0 && movement.magnitude > 0.01f)
             {
                 movement += Vector3.right * slideSpeed * Time.deltaTime;
             }
-            else if (movement.x < 0) {
+            else if (movement.x < 0&&movement.magnitude > 0.01f) {
                 movement += Vector3.left * slideSpeed * Time.deltaTime;
             }
 
