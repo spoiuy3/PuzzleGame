@@ -15,7 +15,7 @@ public class movescript1 : MonoBehaviour
     private float moveSpeed25 = 5f;
     [SerializeField, Range(0f, 100f)]
     private float jumpForce = 5f;
-    private bool isGrounded; // 플레이어가 땅에 닿아 있는지 확인
+    public static bool isGrounded; // 플레이어가 땅에 닿아 있는지 확인
     public static string level;
     public static bool haveKey;
     public static bool canMove = true;
@@ -24,10 +24,11 @@ public class movescript1 : MonoBehaviour
     private GameObject[] backgrounds;
     //private GameObject[] grounds;
     private int childNum1;
-    private int childNum2;
+    //private int childNum2;
     Rigidbody rb;
     public float friction = 0.95f; // 빙판에서의 마찰력 조절을 위한 변수
     public float slideSpeed = 2f;
+    public static Vector3 movement;
 
     BoxCollider boxCollider;
     void Start()
@@ -115,7 +116,6 @@ public class movescript1 : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        Vector3 movement;
 
 
         // 이동 벡터 계산
