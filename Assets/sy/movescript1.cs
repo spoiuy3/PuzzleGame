@@ -20,34 +20,26 @@ public class movescript1 : MonoBehaviour
     public static bool haveKey;
     public static bool canMove = true;
     public GameObject background;
-    //public GameObject ground;
     private GameObject[] backgrounds;
-    //private GameObject[] grounds;
     private int childNum1;
     //private int childNum2;
     Rigidbody rb;
     public float friction = 0.95f; // 빙판에서의 마찰력 조절을 위한 변수
     public float slideSpeed = 2f;
     public static Vector3 movement;
+    private float scaleSpeed = 0.008f;
+    private Vector3 currentScale;
 
     BoxCollider boxCollider;
     void Start()
     {
         // background 자식들 넣어주기
         childNum1 = background.transform.childCount;
-        //childNum2 = ground.transform.childCount;
         backgrounds = new GameObject[childNum1];
-        //grounds = new GameObject[childNum2];
         for (int i = 0; i < childNum1; i++)
         {
             backgrounds[i] = background.transform.GetChild(i).gameObject;
         }
-        /*
-        for (int i = 0; i < childNum2; i++)
-        {
-            grounds[i] = ground.transform.GetChild(i).gameObject;
-        }
-        */
 
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
@@ -73,12 +65,7 @@ public class movescript1 : MonoBehaviour
             {
                 backgrounds[i].GetComponent<Rigidbody>().isKinematic = false;
             }
-            /*
-            for (int i = 0; i < childNum2; i++)
-            {
-                grounds[i].GetComponent<Rigidbody>().isKinematic = false;
-            }
-            */
+
             StartCoroutine(DelayedFunction());
         }
         RaycastHit hit1, hit2;
@@ -279,12 +266,6 @@ public class movescript1 : MonoBehaviour
             {
                 backgrounds[i].GetComponent<Rigidbody>().isKinematic = false;
             }
-            /*
-            for (int i = 0; i < childNum2; i++)
-            {
-                grounds[i].GetComponent<Rigidbody>().isKinematic = false;
-            }
-            */
             StartCoroutine(DelayedFunction());
         }
     }
@@ -294,6 +275,10 @@ public class movescript1 : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         canMove = true;
         SceneManager.LoadScene(level);
+    }
+    IEnumerator DelayedFunction_()
+    {
+        yield return new WaitForSeconds(1.0f);
     }
 
 
