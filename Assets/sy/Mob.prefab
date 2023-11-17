@@ -149,4 +149,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 4038067753805166564, guid: a421dfbf97b2b0444b4577c60e2a0e69, type: 3}
-  trackingSpeed: 5
+  trackingSpeed: 12
