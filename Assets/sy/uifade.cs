@@ -16,7 +16,7 @@ public class uifade : MonoBehaviour
     
     void Start()
     {
-
+        isStart = false;
         movescript1.canMoveUI = false;
         uiImage.gameObject.SetActive(true);
         // 시작 시 투명도를 1.0으로 설정
