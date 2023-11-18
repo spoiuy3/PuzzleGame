@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Idle_MS : MonoBehaviour
 {
-    private float scaleSpeed = 0.008f;
+    private float scaleSpeed = 0.01f;
     private Vector3 currentScale;
     private bool getSmall;
     private Vector3 moveVec;
