@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class gamesave : MonoBehaviour
 {
-    string currentStage;
+    string currentStage = "0";
 
     private void Start()
     {
