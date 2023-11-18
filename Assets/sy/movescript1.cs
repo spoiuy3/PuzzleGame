@@ -133,10 +133,7 @@ public class movescript1 : MonoBehaviour
 
 
 
-        if (Physics.gravity.z != 0f)
-        {
-            rb.velocity = Vector3.zero;
-        }
+        
         if (!canMove)
             rb.velocity = Vector3.zero;
 
