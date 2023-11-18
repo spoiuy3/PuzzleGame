@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Button resume;
     public Button exit;
     public Button restart;
+    public static bool isReady = true;
     // Update is called once per frame
 
     private void Start()
@@ -19,10 +20,11 @@ public class UIManager : MonoBehaviour
         resume.onClick.AddListener(Resume);
         exit.onClick.AddListener(Exit);
         restart.onClick.AddListener(Restart);
+        StartCoroutine(Delayed());
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)&& !isReady)
         {
             // 타겟 오브젝트의 활성화 상태를 토글
             pause.SetActive(!pause.activeSelf);
@@ -47,5 +49,12 @@ public class UIManager : MonoBehaviour
     {
         string name = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(name);
+    }
+
+    IEnumerator Delayed()
+    {
+        
+        yield return new WaitForSecondsRealtime(1f);
+        isReady = false;
     }
 }

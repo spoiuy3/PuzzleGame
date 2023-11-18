@@ -12,7 +12,7 @@ public class uifade : MonoBehaviour
     
     private float currentAlpha = 1.0f; // 초기 투명도
     public static bool isStart;
-
+    
     
     void Start()
     {

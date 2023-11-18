@@ -43,6 +43,7 @@ public class Blue : MonoBehaviour
 
     IEnumerator Delay()
     {
+        UIManager.isReady = true;
         uifade.isStart = true;
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene("MapSelect");

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -54,12 +55,7 @@ public class movescript1 : MonoBehaviour
             Jump();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            canMove = false;
-
-            StartCoroutine(DelayedFunction());
-        }
+        
         RaycastHit hit1, hit2;
         if(Physics.gravity.y < 0f)
         {
@@ -89,7 +85,7 @@ public class movescript1 : MonoBehaviour
             }
         }
         
-        if(!canMove&& isObstacle)
+        if(isObstacle)
         {
             Player_rotate();
             Player_Scale();
@@ -281,6 +277,7 @@ public class movescript1 : MonoBehaviour
 
     void Player_Scale()
     {
+        
         transform.localScale -= new Vector3(0.008f, 0.008f, 0.008f);
     }
     void Player_rotate()
