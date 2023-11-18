@@ -48,13 +48,17 @@ public class BeginScript : MonoBehaviour
         canRoate = true;
         canMove=true;
         n = 0;
-        order = 1;
+        order = 0;
         hasFunctionExecuted_order = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(order ==0)
+        {
+            Invoke("OrderPlus0", 2.0f);
+        }
         if (order == 1)
         {
             hasFunctionExecuted_order = false;
@@ -330,6 +334,10 @@ public class BeginScript : MonoBehaviour
         {
             Invoke("DevilLand", 0.3f);
         }
+    }
+    void OrderPlus0()
+    {
+        order = 1;
     }
 
     void OrderPlus1()
