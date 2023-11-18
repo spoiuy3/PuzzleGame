@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BeginScript : MonoBehaviour
 {
@@ -166,11 +167,19 @@ public class BeginScript : MonoBehaviour
         {
             hasFunctionExecuted_order = false;
             Player_rotate();
+            if (devil.transform.localPosition.x < 152.0883f)
+            {
+                Devil_Walk_();
+            }
             if (!hasFunctionExecuted_order)
             {
-                //Invoke("OrderPlus8", 3.0f);
+                Invoke("OrderPlus8", 4.0f);
                 Debug.Log("Player_rotate");
             }
+        }
+        else if (order == 9)
+        {
+            SceneManager.LoadScene("MapSelect");
         }
     }
 
@@ -254,7 +263,16 @@ public class BeginScript : MonoBehaviour
         }
         
     }
-    
+
+    void Devil_Walk_()
+    {
+        if (canMove)
+        {
+            devil.transform.localPosition += new Vector3(0.1f, 0f, 0f);
+        }
+
+    }
+
     void Devil_JumpId()
     {
         if (canJump_devil && devil.transform.localPosition.y < 5.0f)
@@ -347,6 +365,11 @@ public class BeginScript : MonoBehaviour
     void OrderPlus7()
     {
         order = 8;
+        hasFunctionExecuted_order = true;
+    }
+    void OrderPlus8()
+    {
+        order = 9;
         hasFunctionExecuted_order = true;
     }
     void PlayerLand()
