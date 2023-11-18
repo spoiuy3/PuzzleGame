@@ -80,7 +80,7 @@ public class ChangeCamera : MonoBehaviour
         if (!isRotating)
         {
             // 특정 키를 누르면 회전 시작
-            if (a.transform.rotation.eulerAngles.y==270f)
+            if (a.transform.rotation.eulerAngles.y==270)
             {
                 targetRotation = 90f;
                 

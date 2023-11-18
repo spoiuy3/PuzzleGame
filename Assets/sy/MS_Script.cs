@@ -16,6 +16,7 @@ public class MS_Script : MonoBehaviour
     private bool canMove;
     void Start()
     {
+        Physics.gravity = new Vector3(0, -30, 0);
         forest_3d.Priority = 1;
         dungeon_3d.Priority = 0;
         player_3d.Priority= 0;
@@ -57,7 +58,7 @@ public class MS_Script : MonoBehaviour
                 player_3d.Priority = 1;
             }
         }
-        if (order==0)
+        if (order>=0)
         {
             forest_3d.Priority = 0;
             dungeon_3d.Priority = 0;

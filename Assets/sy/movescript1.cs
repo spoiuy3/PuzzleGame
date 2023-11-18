@@ -91,7 +91,7 @@ public class movescript1 : MonoBehaviour
             Player_Scale();
         }
         
-
+        rb.velocity = Vector3.zero;
 
 
     }

@@ -50,6 +50,7 @@ public class LoadLevel : MonoBehaviour
     IEnumerator Delay()
     {
         uifade.isStart = true;
+        movescript1.canMove = false;
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene(level);
     }
