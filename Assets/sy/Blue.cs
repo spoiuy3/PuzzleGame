@@ -20,6 +20,8 @@ public class Blue : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && interact.haveKey && state == "2d" && onTrigger)
         {
             gamesave.clearStage = level;
+            movescript1.canMove = false;
+            StartCoroutine(Delay());
         }
     }
 
@@ -37,5 +39,12 @@ public class Blue : MonoBehaviour
         {
             onTrigger = false;
         }
+    }
+
+    IEnumerator Delay()
+    {
+        uifade.isStart = true;
+        yield return new WaitForSecondsRealtime(1f);
+        SceneManager.LoadScene("MapSelect");
     }
 }

@@ -19,6 +19,7 @@ public class movescript1 : MonoBehaviour
     public static string level;
     public static bool haveKey;
     public static bool canMove = true;
+    public static bool canMoveUI = true;
     private bool isObstacle;
     private int childNum1;
     //private int childNum2;
@@ -101,7 +102,7 @@ public class movescript1 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(canMove)
+        if(canMove&&canMoveUI)
         {
             horizontalInput = Input.GetAxis("Horizontal");
             verticalInput = Input.GetAxis("Vertical");

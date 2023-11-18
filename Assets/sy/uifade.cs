@@ -11,13 +11,13 @@ public class uifade : MonoBehaviour
     public float fadeInDuration = 0.5f;
     
     private float currentAlpha = 1.0f; // 초기 투명도
-    public static bool isStart = false;
+    public static bool isStart;
 
     
     void Start()
     {
 
-        movescript1.canMove = false;
+        movescript1.canMoveUI = false;
         uiImage.gameObject.SetActive(true);
         // 시작 시 투명도를 1.0으로 설정
         
@@ -70,7 +70,7 @@ public class uifade : MonoBehaviour
     {
         
         yield return new WaitForSecondsRealtime(1f);
-        movescript1.canMove = true;
+        movescript1.canMoveUI = true;
         
         
     }

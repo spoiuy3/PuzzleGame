@@ -13,7 +13,7 @@ public class Mob : MonoBehaviour
     void Start()
     {
         // 2초마다 SpawnObject 함수를 반복 호출
-        InvokeRepeating("SpawnObject", 0f, spawnInterval);
+        InvokeRepeating("SpawnObject", 1f, spawnInterval);
         
     }
 
