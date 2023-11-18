@@ -11,18 +11,17 @@ public class MS_Script : MonoBehaviour
     public CinemachineVirtualCamera dungeon_3d;
     public CinemachineVirtualCamera player_3d;
     public GameObject player;
-    private Vector3 currentVec;
     private int order;
+    private int n;
     private bool canMove;
-    public movescript1 movescript;
     void Start()
     {
         forest_3d.Priority = 1;
         dungeon_3d.Priority = 0;
         player_3d.Priority= 0;
-        order = gamesave.clearStage-2;
+        order = gamesave.clearStage;
         canMove = true;
-        currentVec = player.transform.localPosition;
+        n = 0;
     }
 
     // Update is called once per frame
@@ -36,26 +35,29 @@ public class MS_Script : MonoBehaviour
         {
             player.GetComponent <movescript1>().MoveChange_true();
         }
-        if (order==-3)
+        if (order==-1)
         {
-            canMove = false;
-            Invoke("Delay1", 2.0f);
+            if (n==0)
+            {
+                canMove = false;
+                Invoke("Delay1", 2.0f);
+            }
+            else if (n == 1)
+            {
+                forest_3d.Priority = 0;
+                dungeon_3d.Priority = 1;
+                player_3d.Priority = 0;
+                Invoke("Delay2", 8.0f);
+            }
+            else if (n==2)
+            {
+                canMove = true;
+                forest_3d.Priority = 0;
+                dungeon_3d.Priority = 0;
+                player_3d.Priority = 1;
+            }
         }
-        if (order==-2)
-        {
-            forest_3d.Priority = 0;
-            dungeon_3d.Priority = 1;
-            player_3d.Priority = 0;
-            Invoke("Delay2", 8.0f);
-        }
-        else if (order==-1)
-        {
-            canMove = true;
-            forest_3d.Priority = 0;
-            dungeon_3d.Priority = 0;
-            player_3d.Priority = 1;
-        }
-        else if (order>=0)
+        if (order==0)
         {
             forest_3d.Priority = 0;
             dungeon_3d.Priority = 0;
@@ -65,10 +67,10 @@ public class MS_Script : MonoBehaviour
 
     void Delay1()
     {
-        order = -2;
+        n = 1;
     }
     void Delay2()
     {
-        order = -1;
+        n = 2;
     }
 }
