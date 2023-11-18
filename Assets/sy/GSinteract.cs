@@ -44,11 +44,13 @@ public class GSinteract : MonoBehaviour
             {
                 if(gamesave.clearStage == -1)
                 {
-                    SceneManager.LoadScene("Begin_Story");
+                    uifade.isStart = true;
+                    StartCoroutine(DelayedFunction3());
                 }
                 else
                 {
-                    SceneManager.LoadScene("MapSelect");
+                    uifade.isStart = true;
+                    StartCoroutine(DelayedFunction4());
                 }
             }
         }
@@ -115,5 +117,17 @@ public class GSinteract : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         blueFire.SetActive(false);
         blueSmoke.SetActive(false);
+    }
+    IEnumerator DelayedFunction3()
+    {
+        
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Begin_Story");
+    }
+    IEnumerator DelayedFunction4()
+    {
+        
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("MapSelect");
     }
 }
