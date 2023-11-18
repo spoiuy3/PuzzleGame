@@ -285,5 +285,12 @@ public class movescript1 : MonoBehaviour
         transform.Rotate(Vector3.up, 2f);
     }
 
-
+    public void MoveChange_false()
+    {
+        canMove = false;
+    }
+    public void MoveChange_true()
+    {
+        canMove = true;
+    }
 }

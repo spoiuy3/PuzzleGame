@@ -19,12 +19,12 @@ public class Idle_MS : MonoBehaviour
     void Update()
     {
         moveVec = movescript1.movement;
-        if (getSmall && currentScale.y > 5.0f && moveVec.magnitude < 0.01f)
+        if (getSmall && currentScale.y > 5.0f)
         {
             currentScale.y -= scaleSpeed;
             transform.localScale = currentScale;
         }
-        else if (!getSmall && 6.0f > currentScale.y && moveVec.magnitude < 0.01f)
+        else if (!getSmall && 6.0f > currentScale.y)
         {
             currentScale.y += scaleSpeed;
             transform.localScale = currentScale;
