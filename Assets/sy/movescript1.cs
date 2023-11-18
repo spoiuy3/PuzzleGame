@@ -19,8 +19,7 @@ public class movescript1 : MonoBehaviour
     public static string level;
     public static bool haveKey;
     public static bool canMove = true;
-    public GameObject background;
-    private GameObject[] backgrounds;
+    private bool isObstacle;
     private int childNum1;
     //private int childNum2;
     Rigidbody rb;
@@ -29,22 +28,18 @@ public class movescript1 : MonoBehaviour
     public static Vector3 movement;
     private float scaleSpeed = 0.008f;
     private Vector3 currentScale;
+    private float horizontalInput;
+    private float verticalInput;
 
     BoxCollider boxCollider;
     void Start()
     {
-        // background 자식들 넣어주기
-        childNum1 = background.transform.childCount;
-        backgrounds = new GameObject[childNum1];
-        for (int i = 0; i < childNum1; i++)
-        {
-            backgrounds[i] = background.transform.GetChild(i).gameObject;
-        }
 
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
         boxCollider = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
+        isObstacle = false;
 
     }
 
@@ -61,10 +56,6 @@ public class movescript1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             canMove = false;
-            for (int i = 0; i < childNum1; i++)
-            {
-                backgrounds[i].GetComponent<Rigidbody>().isKinematic = false;
-            }
 
             StartCoroutine(DelayedFunction());
         }
@@ -97,7 +88,11 @@ public class movescript1 : MonoBehaviour
             }
         }
         
-
+        if(!canMove&& isObstacle)
+        {
+            Player_rotate();
+            Player_Scale();
+        }
         
 
 
@@ -106,8 +101,11 @@ public class movescript1 : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        if(canMove)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+        }
 
 
         // 이동 벡터 계산
@@ -264,10 +262,7 @@ public class movescript1 : MonoBehaviour
         if (collider.gameObject.CompareTag("Obstacle"))
         {
             canMove = false;
-            for (int i = 0; i < childNum1; i++)
-            {
-                backgrounds[i].GetComponent<Rigidbody>().isKinematic = false;
-            }
+            isObstacle = true;
             StartCoroutine(DelayedFunction());
         }
     }
@@ -281,6 +276,15 @@ public class movescript1 : MonoBehaviour
     IEnumerator DelayedFunction_()
     {
         yield return new WaitForSeconds(1.0f);
+    }
+
+    void Player_Scale()
+    {
+        transform.localScale -= new Vector3(0.008f, 0.008f, 0.008f);
+    }
+    void Player_rotate()
+    {
+        transform.Rotate(Vector3.up, 2f);
     }
 
 
