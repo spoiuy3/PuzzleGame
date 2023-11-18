@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class gamesave : MonoBehaviour
 {
-    string currentStage = "0";
+    public static int clearStage = -1;
 
     private void Start()
     {
@@ -14,14 +14,14 @@ public class gamesave : MonoBehaviour
     public void GameSave()
     {
         
-        PlayerPrefs.SetString("Stage", SceneManager.GetActiveScene().name);
+        PlayerPrefs.SetInt("Stage", clearStage);
     }
 
     public void GameLoad()
     {
         if (!PlayerPrefs.HasKey("Stage"))
             return;
-        currentStage = PlayerPrefs.GetString("Stage");
+        clearStage = PlayerPrefs.GetInt("Stage");
     }
 
     public void GameExit()
