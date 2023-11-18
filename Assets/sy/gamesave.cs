@@ -9,7 +9,7 @@ public class gamesave : MonoBehaviour
 
     private void Start()
     {
-        GameLoad();
+        
     }
     public void GameSave()
     {
