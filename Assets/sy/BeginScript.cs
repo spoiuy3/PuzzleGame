@@ -183,7 +183,7 @@ public class BeginScript : MonoBehaviour
         }
         else if (order == 9)
         {
-            SceneManager.LoadScene("MapSelect");
+            StartCoroutine(Delay());
         }
     }
 
@@ -395,5 +395,12 @@ public class BeginScript : MonoBehaviour
     void DevilMove()
     {
         canMove = true;
+    }
+
+    IEnumerator Delay()
+    {
+        uifade.isStart = true;
+        yield return new WaitForSecondsRealtime(1f);
+        SceneManager.LoadScene("MapSelect");
     }
 }

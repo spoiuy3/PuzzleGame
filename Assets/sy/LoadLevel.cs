@@ -21,7 +21,7 @@ public class LoadLevel : MonoBehaviour
     {
         if(isTrig && Input.GetKeyDown(KeyCode.F) && int.Parse(level)<=clearStage+1)
         {
-            SceneManager.LoadScene(level);
+            StartCoroutine(Delay());
         }
         if(int.Parse(level) <= clearStage)
         {
@@ -46,5 +46,11 @@ public class LoadLevel : MonoBehaviour
         {
             isTrig = false;
         }
+    }
+    IEnumerator Delay()
+    {
+        uifade.isStart = true;
+        yield return new WaitForSecondsRealtime(1f);
+        SceneManager.LoadScene(level);
     }
 }
