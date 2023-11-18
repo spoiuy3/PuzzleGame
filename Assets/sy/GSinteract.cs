@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GSinteract : MonoBehaviour
 {
@@ -41,7 +42,14 @@ public class GSinteract : MonoBehaviour
             redSmoke_.loop = true;
             if (Input.GetKeyDown(KeyCode.F))
             {
-                Debug.Log("Play"); // UI 작성 필요 부분
+                if(gamesave.clearStage == -1)
+                {
+                    SceneManager.LoadScene("Begin_Story");
+                }
+                else
+                {
+                    SceneManager.LoadScene("MapSelect");
+                }
             }
         }
         else if (!redfirecollision&&redout)

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Blue : MonoBehaviour
 {
     private string state;
-    private string level;
+    public int level;
     private bool onTrigger;
 
     void Start()
@@ -15,11 +15,11 @@ public class Blue : MonoBehaviour
     }
     void Update()
     {
-        level = movescript1.level;
+        
         state = interact.state;
         if (Input.GetKeyDown(KeyCode.F) && interact.haveKey && state == "2d" && onTrigger)
         {
-            SceneManager.LoadScene((int.Parse(level) + 1).ToString());
+            gamesave.clearStage = level;
         }
     }
 
