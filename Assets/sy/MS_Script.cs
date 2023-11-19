@@ -10,9 +10,10 @@ public class MS_Script : MonoBehaviour
     public CinemachineVirtualCamera forest_3d;
     public CinemachineVirtualCamera dungeon_3d;
     public CinemachineVirtualCamera player_3d;
+    public CinemachineVirtualCamera dungeon_2d;
     public GameObject player;
     private int order;
-    private int n;
+    private int clear;
     
     void Start()
     {
@@ -22,8 +23,18 @@ public class MS_Script : MonoBehaviour
         forest_3d.Priority = 1;
         dungeon_3d.Priority = 0;
         player_3d.Priority= 0;
+        dungeon_2d.Priority = 0;
         order = gamesave.cine;
-        if(order == 0)
+        clear = gamesave.clearStage;
+        if (clear <= 2 && clear > 0)
+            player.transform.position += new Vector3(16f * clear, 0f, 0f);
+        else if (clear > 2 && clear <= 4)
+            player.transform.position = new Vector3(-38.55f + 16f * (clear - 3), 24.7f, -34.4f);
+        else if (clear > 4 && clear <= 7)
+            player.transform.position = new Vector3(13.3f + 18f * (clear - 5), 24.7f, -34.4f);
+        else if (clear > 7)
+            player.transform.position = new Vector3(85.9f + 12f * (clear - 8), 24.7f, -34.4f);
+        if (order == 0)
             Delay();
         else
             Delay2();
@@ -55,9 +66,19 @@ public class MS_Script : MonoBehaviour
         {
             StartCoroutine(Delay4());
         }
-        forest_3d.Priority = 0;
-        dungeon_3d.Priority = 0;
-        player_3d.Priority = 1;
+        if (order == 11)
+        {
+            forest_3d.Priority = 1;
+            dungeon_3d.Priority = 0;
+            player_3d.Priority = 0;
+            dungeon_2d.Priority = 0;
+        }
+        else
+        {
+            forest_3d.Priority = 0;
+            dungeon_3d.Priority = 0;
+            player_3d.Priority = 1;
+        }
     }
     IEnumerator Delay3()
     {
