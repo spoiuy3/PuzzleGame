@@ -17,9 +17,11 @@ public class GSinteract : MonoBehaviour
     private ParticleSystem.MainModule blueFire_;
     private bool redfirecollision;
     private bool bluefirecollision;
+    public static bool isQuit =false;
     // Start is called before the first frame update
     void Start()
     {
+        isQuit = false;
         redout = true;
         blueout = true;
         redfirecollision = false;
@@ -42,7 +44,7 @@ public class GSinteract : MonoBehaviour
             redSmoke_.loop = true;
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if(gamesave.clearStage == -1)
+                if(gamesave.clearStage == -1 && gamesave.cine == -1)
                 {
                     uifade.isStart = true;
                     StartCoroutine(DelayedFunction3());
@@ -70,7 +72,8 @@ public class GSinteract : MonoBehaviour
             blueSmoke_.loop = true;
             if (Input.GetKeyDown(KeyCode.F))
             {
-                Debug.Log("Quit"); // UI 작성 필요 부분
+                uifade.isStart = true;
+                StartCoroutine(DelayedFunction5());
             }
         }
         else if(!bluefirecollision&&blueout)
@@ -129,5 +132,11 @@ public class GSinteract : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("MapSelect");
+    }
+    IEnumerator DelayedFunction5()
+    {
+
+        yield return new WaitForSeconds(1f);
+        isQuit = true;
     }
 }

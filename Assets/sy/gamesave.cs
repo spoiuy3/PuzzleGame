@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class gamesave : MonoBehaviour
 {
     public static int clearStage = -1;
+    public static int cine = -1;
 
     private void Start()
     {
@@ -13,7 +14,7 @@ public class gamesave : MonoBehaviour
     }
     public void GameSave()
     {
-        
+        PlayerPrefs.SetInt("Cine", cine);
         PlayerPrefs.SetInt("Stage", clearStage);
     }
 

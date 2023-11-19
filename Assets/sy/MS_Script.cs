@@ -22,7 +22,10 @@ public class MS_Script : MonoBehaviour
         dungeon_3d.Priority = 0;
         player_3d.Priority= 0;
         order = gamesave.clearStage;
-        Delay();
+        if(order == -1)
+            Delay();
+        else
+            Delay2();
     }
 
     // Update is called once per frame
