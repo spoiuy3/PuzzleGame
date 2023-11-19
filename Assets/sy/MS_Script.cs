@@ -13,51 +13,23 @@ public class MS_Script : MonoBehaviour
     public GameObject player;
     private int order;
     private int n;
-    private bool canMove;
+    
     void Start()
     {
+        Time.timeScale = 1.0f;
         Physics.gravity = new Vector3(0, -30, 0);
         forest_3d.Priority = 1;
         dungeon_3d.Priority = 0;
         player_3d.Priority= 0;
         order = gamesave.clearStage;
-        canMove = true;
-        n = 0;
+        Delay();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!canMove)
-        {
-            player.GetComponent<movescript1>().MoveChange_false();
-        }
-        else
-        {
-            player.GetComponent <movescript1>().MoveChange_true();
-        }
-        if (order==-1)
-        {
-            if (n==0)
-            {
-                canMove = false;
-                Invoke("Delay1", 2.0f);
-            }
-            else if (n == 1)
-            {
-                forest_3d.Priority = 0;
-                dungeon_3d.Priority = 1;
-                player_3d.Priority = 0;
-                Invoke("Delay2", 8.0f);
-            }
-            else if (n==2)
-            {
-                canMove = true;
-                forest_3d.Priority = 0;
-                dungeon_3d.Priority = 0;
-                player_3d.Priority = 1;
-            }
-        }
+        Debug.Log(gamesave.clearStage);
+        
         if (order>=0)
         {
             forest_3d.Priority = 0;
@@ -65,13 +37,29 @@ public class MS_Script : MonoBehaviour
             player_3d.Priority = 1;
         }
     }
-
+    void Delay()
+    {
+        movescript1.canMove = false;
+        Invoke("Delay1", 2.0f);
+    }
     void Delay1()
     {
-        n = 1;
+        forest_3d.Priority = 0;
+        dungeon_3d.Priority = 1;
+        player_3d.Priority = 0;
+        StartCoroutine(Delay3());
+        Invoke("Delay2", 8.0f);
     }
     void Delay2()
     {
-        n = 2;
+        forest_3d.Priority = 0;
+        dungeon_3d.Priority = 0;
+        player_3d.Priority = 1;
+    }
+    IEnumerator Delay3()
+    {
+        yield return new WaitForSecondsRealtime(10f);
+        
+        movescript1.canMove = true;
     }
 }

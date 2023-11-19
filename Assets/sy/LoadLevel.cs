@@ -9,6 +9,7 @@ public class LoadLevel : MonoBehaviour
     private bool isTrig;
     private int clearStage;
     public GameObject Fire;
+    public GameObject player;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class LoadLevel : MonoBehaviour
     {
         if(isTrig && Input.GetKeyDown(KeyCode.F) && int.Parse(level)<=clearStage+1)
         {
+            
             StartCoroutine(Delay());
         }
         if(int.Parse(level) <= clearStage)
@@ -29,7 +31,8 @@ public class LoadLevel : MonoBehaviour
         }
         else
             Fire.SetActive(false);
-
+        Debug.Log(movescript1.canMove);
+        
     }
 
     void OnTriggerStay(Collider collider)
@@ -49,6 +52,7 @@ public class LoadLevel : MonoBehaviour
     }
     IEnumerator Delay()
     {
+        
         uifade.isStart = true;
         movescript1.canMove = false;
         yield return new WaitForSecondsRealtime(1f);

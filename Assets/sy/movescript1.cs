@@ -36,7 +36,7 @@ public class movescript1 : MonoBehaviour
     BoxCollider boxCollider;
     void Start()
     {
-
+        canMove = true;
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
         boxCollider = GetComponent<BoxCollider>();
@@ -91,7 +91,7 @@ public class movescript1 : MonoBehaviour
             Player_Scale();
         }
         
-        rb.velocity = Vector3.zero;
+        
 
 
     }
@@ -270,10 +270,7 @@ public class movescript1 : MonoBehaviour
         canMove = true;
         SceneManager.LoadScene(level);
     }
-    IEnumerator DelayedFunction_()
-    {
-        yield return new WaitForSeconds(1.0f);
-    }
+    
 
     void Player_Scale()
     {

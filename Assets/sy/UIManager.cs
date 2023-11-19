@@ -11,11 +11,12 @@ public class UIManager : MonoBehaviour
     public Button resume;
     public Button exit;
     public Button restart;
-    public static bool isReady = true;
+    public static bool isReady;
     // Update is called once per frame
 
     private void Start()
     {
+        isReady = true;
         pause.SetActive(false);
         resume.onClick.AddListener(Resume);
         exit.onClick.AddListener(Exit);
@@ -34,6 +35,7 @@ public class UIManager : MonoBehaviour
         }
         else
             Time.timeScale = 0.0f;
+        
     }
 
     void Resume()
@@ -43,7 +45,7 @@ public class UIManager : MonoBehaviour
 
     void Exit()
     {
-        SceneManager.LoadScene("MapSelect");
+        StartCoroutine(Delay());
     }
     void Restart()
     {
@@ -56,5 +58,13 @@ public class UIManager : MonoBehaviour
         
         yield return new WaitForSecondsRealtime(1f);
         isReady = false;
+    }
+    IEnumerator Delay()
+    {
+        uifade.isStart = true;
+        movescript1.canMove = false;
+        yield return new WaitForSecondsRealtime(1f);
+        SceneManager.LoadScene("MapSelect");
+        
     }
 }
