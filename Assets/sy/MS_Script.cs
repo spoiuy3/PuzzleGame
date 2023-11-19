@@ -13,8 +13,8 @@ public class MS_Script : MonoBehaviour
     public CinemachineVirtualCamera dungeon_2d;
     public GameObject player;
     private int order;
-    private Rigidbody rb;
-
+    private int clear;
+    
     void Start()
     {
         Time.timeScale = 1.0f;
@@ -22,20 +22,18 @@ public class MS_Script : MonoBehaviour
         Physics.gravity = new Vector3(0, -30, 0);
         forest_3d.Priority = 1;
         dungeon_3d.Priority = 0;
-        player_3d.Priority = 0;
+        player_3d.Priority= 0;
         dungeon_2d.Priority = 0;
         order = gamesave.cine;
-        rb = player.GetComponent<Rigidbody>();
-        if (order <= 2 && order > 0)
-        {
-            player.transform.localPosition += new Vector3(16f * order, 0f, 0f);
-        }
-        else if (order > 2 && order <= 4)
-        { player.transform.localPosition = new Vector3(-38.55f + 16f * (order - 3), 24.7f, -34.4f); rb.isKinematic = false; }
-        else if (order > 4 && order <= 7)
-        { player.transform.localPosition = new Vector3(13.3f + 18f * (order - 5), 24.7f, -34.4f); rb.isKinematic = false; }
-        else
-        { player.transform.localPosition = new Vector3(85.9f + 12f * (order - 8), 24.7f, -34.4f); rb.isKinematic = false; }
+        clear = gamesave.clearStage;
+        if (clear <= 2 && clear > 0)
+            player.transform.position += new Vector3(16f * clear, 0f, 0f);
+        else if (clear > 2 && clear <= 4)
+            player.transform.position = new Vector3(-38.55f + 16f * (clear - 3), 24.7f, -34.4f);
+        else if (clear > 4 && clear <= 7)
+            player.transform.position = new Vector3(13.3f + 18f * (clear - 5), 24.7f, -34.4f);
+        else if (clear > 7)
+            player.transform.position = new Vector3(85.9f + 12f * (clear - 8), 24.7f, -34.4f);
         if (order == 0)
             Delay();
         else
@@ -86,12 +84,12 @@ public class MS_Script : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(10f);
         
-        movescript1.canMove = true; rb.isKinematic = true;
+        movescript1.canMove = true;
     }
     IEnumerator Delay4()
     {
         yield return new WaitForSecondsRealtime(2f);
 
-        movescript1.canMove = true; rb.isKinematic = true; 
+        movescript1.canMove = true;
     }
 }
