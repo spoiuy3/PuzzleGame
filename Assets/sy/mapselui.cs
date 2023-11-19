@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class mapselui : MonoBehaviour
@@ -12,10 +13,7 @@ public class mapselui : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gamesave.cine == -1)
-            Invoke("wait", 12f);
-        else
-            Invoke("wait", 1f);
+        Invoke("temp", 0.1f);
         i.SetActive(false);
         bt1.onClick.AddListener(Yes);
         bt2.onClick.AddListener(No);
@@ -28,6 +26,23 @@ public class mapselui : MonoBehaviour
         {
             i.SetActive(!i.activeSelf);
         }
+
+        if (i.activeSelf)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
+
+    void temp()
+    {
+        if (gamesave.cine == 0)
+            Invoke("wait", 12f);
+        else
+            Invoke("wait", 1f);
     }
     void wait()
     {
@@ -36,6 +51,7 @@ public class mapselui : MonoBehaviour
     }
     void Yes()
     {
+        i.SetActive (false);
         uifade.isStart = true;
         isReady = true;
         Invoke("Exit", 1f);
@@ -46,9 +62,6 @@ public class mapselui : MonoBehaviour
     }
     void Exit()
     {
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        SceneManager.LoadScene("GameStart");
     }
 }

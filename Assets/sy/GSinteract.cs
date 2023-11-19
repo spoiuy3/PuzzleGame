@@ -83,6 +83,7 @@ public class GSinteract : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F)&&uiopen)
             {
                 ui.SetActive(true);
+                movescript1.canMove = false;
             }
         }
         else if(!bluefirecollision&&blueout)
@@ -159,6 +160,7 @@ public class GSinteract : MonoBehaviour
 
     void No()
     {
+        movescript1.canMove = true;
         ui.SetActive(false);
     }
 }

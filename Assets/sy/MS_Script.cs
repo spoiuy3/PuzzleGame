@@ -17,7 +17,7 @@ public class MS_Script : MonoBehaviour
     
     void Start()
     {
-        
+        movescript1.canMove = false;
         gamesave.cine++;
         Physics.gravity = new Vector3(0, -30, 0);
         forest_3d.Priority = 1;
@@ -45,7 +45,7 @@ public class MS_Script : MonoBehaviour
     {
         Debug.Log(gamesave.clearStage);
         Debug.Log(gamesave.cine);
-        
+        Debug.Log(movescript1.canMove);
     }
     void Delay()
     {

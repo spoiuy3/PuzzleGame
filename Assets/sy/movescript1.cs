@@ -254,7 +254,7 @@ public class movescript1 : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerStay(Collider collider)
     {
         if (collider.gameObject.CompareTag("Obstacle"))
         {

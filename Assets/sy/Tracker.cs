@@ -23,14 +23,43 @@ public class Tracker : MonoBehaviour
     {
         if (Physics.gravity.z != 0)
         {
-            
-           
             transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, trackingSpeed * Time.deltaTime);
-            
+            if (playerTransform.position.x - transform.position.x < 0f)
+            {
+                Vector3 desiredRotation = new Vector3(0, 0, 0);
+
+                // 오일러 각도를 쿼터니언으로 변환하여 설정
+                Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                transform.rotation = desiredQuaternion;
+            }
+            else
+            {
+                Vector3 desiredRotation = new Vector3(0, 180, 0);
+
+                // 오일러 각도를 쿼터니언으로 변환하여 설정
+                Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                transform.rotation = desiredQuaternion;
+            }
         }
         else
         {
-             transform.position += a * trackingSpeed * 0.0025f;
+            transform.position += a * trackingSpeed  *Time.deltaTime;
+            if (a.x < 0f)
+            {
+                Vector3 desiredRotation = new Vector3(0, 0, 0);
+
+                // 오일러 각도를 쿼터니언으로 변환하여 설정
+                Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                transform.rotation = desiredQuaternion;
+            }
+            else
+            {
+                Vector3 desiredRotation = new Vector3(0, 180, 0);
+
+                // 오일러 각도를 쿼터니언으로 변환하여 설정
+                Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                transform.rotation = desiredQuaternion;
+            }
         }
     }
 

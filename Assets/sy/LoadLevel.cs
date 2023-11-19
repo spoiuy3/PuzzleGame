@@ -31,7 +31,7 @@ public class LoadLevel : MonoBehaviour
         }
         else
             Fire.SetActive(false);
-        Debug.Log(movescript1.canMove);
+        
         
     }
 
