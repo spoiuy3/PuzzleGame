@@ -22,8 +22,8 @@ public class MS_Script : MonoBehaviour
         forest_3d.Priority = 1;
         dungeon_3d.Priority = 0;
         player_3d.Priority= 0;
-        order = gamesave.clearStage;
-        if(order == -1)
+        order = gamesave.cine;
+        if(order == 0)
             Delay();
         else
             Delay2();
@@ -34,12 +34,7 @@ public class MS_Script : MonoBehaviour
     {
         Debug.Log(gamesave.clearStage);
         
-        if (order>=0)
-        {
-            forest_3d.Priority = 0;
-            dungeon_3d.Priority = 0;
-            player_3d.Priority = 1;
-        }
+        
     }
     void Delay()
     {
@@ -56,6 +51,10 @@ public class MS_Script : MonoBehaviour
     }
     void Delay2()
     {
+        if(order != 0)
+        {
+            StartCoroutine(Delay4());
+        }
         forest_3d.Priority = 0;
         dungeon_3d.Priority = 0;
         player_3d.Priority = 1;
@@ -64,6 +63,12 @@ public class MS_Script : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(10f);
         
+        movescript1.canMove = true;
+    }
+    IEnumerator Delay4()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
         movescript1.canMove = true;
     }
 }
