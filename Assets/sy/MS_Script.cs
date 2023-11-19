@@ -17,7 +17,7 @@ public class MS_Script : MonoBehaviour
     
     void Start()
     {
-        Time.timeScale = 1.0f;
+        
         gamesave.cine++;
         Physics.gravity = new Vector3(0, -30, 0);
         forest_3d.Priority = 1;
