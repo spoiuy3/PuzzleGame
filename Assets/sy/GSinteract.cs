@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GSinteract : MonoBehaviour
 {
@@ -18,9 +19,18 @@ public class GSinteract : MonoBehaviour
     private bool redfirecollision;
     private bool bluefirecollision;
     public static bool isQuit =false;
+    private bool uiopen = true;
+    public Button bt1;
+    public Button bt2;
+    public GameObject ui;
+
     // Start is called before the first frame update
     void Start()
     {
+        uiopen = true;
+        ui.SetActive(false);
+        bt1.onClick.AddListener(Yes);
+        bt2.onClick.AddListener(No);
         isQuit = false;
         redout = true;
         blueout = true;
@@ -70,10 +80,9 @@ public class GSinteract : MonoBehaviour
             blueSmoke.SetActive(true);
             blueFire_.loop = true;
             blueSmoke_.loop = true;
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F)&&uiopen)
             {
-                uifade.isStart = true;
-                StartCoroutine(DelayedFunction5());
+                ui.SetActive(true);
             }
         }
         else if(!bluefirecollision&&blueout)
@@ -133,10 +142,23 @@ public class GSinteract : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("MapSelect");
     }
-    IEnumerator DelayedFunction5()
+    void DelayedFunction5()
     {
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
+    void Yes()
+    {
+        uifade.isStart = true;
+        uiopen = false;
+        ui.SetActive(false );
+        Invoke("DelayedFunction5", 1.0f);
+    }
 
-        yield return new WaitForSeconds(1f);
-        isQuit = true;
+    void No()
+    {
+        ui.SetActive(false);
     }
 }

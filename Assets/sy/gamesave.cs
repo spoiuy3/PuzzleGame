@@ -10,12 +10,13 @@ public class gamesave : MonoBehaviour
 
     private void Start()
     {
-        
+        GameSave();
     }
     public void GameSave()
     {
         PlayerPrefs.SetInt("Cine", cine);
         PlayerPrefs.SetInt("Stage", clearStage);
+        PlayerPrefs.Save();
     }
 
     public void GameLoad()

@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
         resume.onClick.AddListener(Resume);
         exit.onClick.AddListener(Exit);
         restart.onClick.AddListener(Restart);
-        StartCoroutine(Delayed());
+        StartCoroutine(D());
     }
     void Update()
     {
@@ -45,19 +45,25 @@ public class UIManager : MonoBehaviour
 
     void Exit()
     {
+        isReady=false;
+        pause.SetActive(!pause.activeSelf);
         StartCoroutine(Delay());
     }
     void Restart()
     {
-        string name = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(name);
+        pause.SetActive(!pause.activeSelf);
+        isReady = true;
+        uifade.isStart = true;
+        movescript1.canMove = false;
+        StartCoroutine(Delayed());
     }
 
     IEnumerator Delayed()
     {
+        string name = SceneManager.GetActiveScene().name;
         
         yield return new WaitForSecondsRealtime(1f);
-        isReady = false;
+        SceneManager.LoadScene(name);
     }
     IEnumerator Delay()
     {
@@ -66,5 +72,15 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene("MapSelect");
         
+    }
+    IEnumerator D()
+    {
+        
+        movescript1.canMove = false;
+        
+        yield return new WaitForSecondsRealtime(1f);
+        movescript1.canMove = true;
+        isReady = false;
+
     }
 }
