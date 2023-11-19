@@ -44,7 +44,7 @@ public class MS_Script : MonoBehaviour
     void Update()
     {
         Debug.Log(gamesave.clearStage);
-        
+        Debug.Log(gamesave.cine);
         
     }
     void Delay()
