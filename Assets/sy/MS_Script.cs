@@ -17,7 +17,7 @@ public class MS_Script : MonoBehaviour
     
     void Start()
     {
-        movescript1.canMove = false;
+        
         gamesave.cine++;
         Physics.gravity = new Vector3(0, -30, 0);
         forest_3d.Priority = 1;
@@ -43,14 +43,23 @@ public class MS_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gamesave.clearStage);
-        Debug.Log(gamesave.cine);
-        Debug.Log(movescript1.canMove);
+        
     }
     void Delay()
     {
-        movescript1.canMove = false;
+        if(order == 0)
+        {
+            movescript1.friction = 0f;
+        }
+        StartCoroutine(Del());
         Invoke("Delay1", 2.0f);
+    }
+    
+    IEnumerator Del()
+    {
+
+        yield return new WaitForSecondsRealtime(1f);
+        Time.timeScale = 0f;
     }
     void Delay1()
     {
@@ -83,13 +92,13 @@ public class MS_Script : MonoBehaviour
     IEnumerator Delay3()
     {
         yield return new WaitForSecondsRealtime(10f);
-        
+        movescript1.friction = 1f;
         movescript1.canMove = true;
     }
     IEnumerator Delay4()
     {
         yield return new WaitForSecondsRealtime(2f);
-
+        movescript1.friction = 1f;
         movescript1.canMove = true;
     }
 }

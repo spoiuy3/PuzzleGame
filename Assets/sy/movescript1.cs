@@ -25,7 +25,7 @@ public class movescript1 : MonoBehaviour
     private int childNum1;
     //private int childNum2;
     Rigidbody rb;
-    public float friction = 0.95f; // 빙판에서의 마찰력 조절을 위한 변수
+    public static float friction = 1f; // 빙판에서의 마찰력 조절을 위한 변수
     public float slideSpeed = 2f;
     public static Vector3 movement;
     private float scaleSpeed = 0.008f;
