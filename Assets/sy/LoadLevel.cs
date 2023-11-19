@@ -55,6 +55,7 @@ public class LoadLevel : MonoBehaviour
         
         uifade.isStart = true;
         movescript1.canMove = false;
+        gamesave.curStage = int.Parse(level);
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene(level);
     }

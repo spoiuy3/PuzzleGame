@@ -25,7 +25,7 @@ public class MS_Script : MonoBehaviour
         player_3d.Priority= 0;
         dungeon_2d.Priority = 0;
         order = gamesave.cine;
-        clear = gamesave.clearStage;
+        clear = gamesave.curStage;
         if (clear <= 2 && clear > 0)
             player.transform.position += new Vector3(16f * clear, 0f, 0f);
         else if (clear > 2 && clear <= 4)
