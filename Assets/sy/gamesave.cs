@@ -9,7 +9,7 @@ public class gamesave : MonoBehaviour
 
     private void Start()
     {
-        
+        GameSave();
     }
     public void GameSave()
     {
@@ -17,15 +17,5 @@ public class gamesave : MonoBehaviour
         PlayerPrefs.SetInt("Stage", clearStage);
     }
 
-    public void GameLoad()
-    {
-        if (!PlayerPrefs.HasKey("Stage"))
-            return;
-        clearStage = PlayerPrefs.GetInt("Stage");
-    }
-
-    public void GameExit()
-    {
-        Application.Quit();
-    }
+    
 }
