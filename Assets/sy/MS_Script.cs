@@ -10,10 +10,11 @@ public class MS_Script : MonoBehaviour
     public CinemachineVirtualCamera forest_3d;
     public CinemachineVirtualCamera dungeon_3d;
     public CinemachineVirtualCamera player_3d;
+    public CinemachineVirtualCamera dungeon_2d;
     public GameObject player;
     private int order;
-    private int n;
-    
+    private Rigidbody rb;
+
     void Start()
     {
         Time.timeScale = 1.0f;
@@ -21,9 +22,21 @@ public class MS_Script : MonoBehaviour
         Physics.gravity = new Vector3(0, -30, 0);
         forest_3d.Priority = 1;
         dungeon_3d.Priority = 0;
-        player_3d.Priority= 0;
+        player_3d.Priority = 0;
+        dungeon_2d.Priority = 0;
         order = gamesave.cine;
-        if(order == 0)
+        rb = player.GetComponent<Rigidbody>();
+        if (order <= 2 && order > 0)
+        {
+            player.transform.localPosition += new Vector3(16f * order, 0f, 0f);
+        }
+        else if (order > 2 && order <= 4)
+        { player.transform.localPosition = new Vector3(-38.55f + 16f * (order - 3), 24.7f, -34.4f); rb.isKinematic = false; }
+        else if (order > 4 && order <= 7)
+        { player.transform.localPosition = new Vector3(13.3f + 18f * (order - 5), 24.7f, -34.4f); rb.isKinematic = false; }
+        else
+        { player.transform.localPosition = new Vector3(85.9f + 12f * (order - 8), 24.7f, -34.4f); rb.isKinematic = false; }
+        if (order == 0)
             Delay();
         else
             Delay2();
@@ -55,20 +68,30 @@ public class MS_Script : MonoBehaviour
         {
             StartCoroutine(Delay4());
         }
-        forest_3d.Priority = 0;
-        dungeon_3d.Priority = 0;
-        player_3d.Priority = 1;
+        if (order == 11)
+        {
+            forest_3d.Priority = 1;
+            dungeon_3d.Priority = 0;
+            player_3d.Priority = 0;
+            dungeon_2d.Priority = 0;
+        }
+        else
+        {
+            forest_3d.Priority = 0;
+            dungeon_3d.Priority = 0;
+            player_3d.Priority = 1;
+        }
     }
     IEnumerator Delay3()
     {
         yield return new WaitForSecondsRealtime(10f);
         
-        movescript1.canMove = true;
+        movescript1.canMove = true; rb.isKinematic = true;
     }
     IEnumerator Delay4()
     {
         yield return new WaitForSecondsRealtime(2f);
 
-        movescript1.canMove = true;
+        movescript1.canMove = true; rb.isKinematic = true; 
     }
 }
