@@ -21,15 +21,5 @@ public class gamesave : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void GameLoad()
-    {
-        if (!PlayerPrefs.HasKey("Stage"))
-            return;
-        clearStage = PlayerPrefs.GetInt("Stage");
-    }
-
-    public void GameExit()
-    {
-        Application.Quit();
-    }
+    
 }
