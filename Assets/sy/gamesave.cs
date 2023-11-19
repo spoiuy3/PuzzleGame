@@ -11,7 +11,8 @@ public class gamesave : MonoBehaviour
 
     private void Start()
     {
-        GameSave();
+        Invoke("GameSave", 0.2f);
+        
     }
     public void GameSave()
     {
