@@ -6,13 +6,20 @@ using UnityEngine.UI;
 
 public class mapselui : MonoBehaviour
 {
+    public AudioClip myAudioClip1; // Inspector에서 설정할 오디오 클립
+    public AudioClip myAudioClip2;
+    private AudioSource audioSource;
     public Button bt1;
     public Button bt2;
     public GameObject i;
     private bool isReady =true;
     // Start is called before the first frame update
     void Start()
-    {
+    {// AudioSource 컴포넌트 가져오기
+        audioSource = GetComponent<AudioSource>();
+
+        // 오디오 클립 설정
+        audioSource.clip = myAudioClip1;
         Invoke("temp", 0.1f);
         i.SetActive(false);
         bt1.onClick.AddListener(Yes);
@@ -25,6 +32,10 @@ public class mapselui : MonoBehaviour
         if (!isReady && Input.GetKeyDown(KeyCode.Escape))
         {
             i.SetActive(!i.activeSelf);
+            if (i.activeSelf)
+            {
+                PlayAudio();
+            }
         }
 
         if (i.activeSelf)
@@ -36,7 +47,11 @@ public class mapselui : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-
+    void PlayAudio()
+    {
+        // 오디오 재생
+        audioSource.Play();
+    }
     void temp()
     {
         if (gamesave.cine == 0)
@@ -51,6 +66,8 @@ public class mapselui : MonoBehaviour
     }
     void Yes()
     {
+        audioSource.clip = myAudioClip2;
+        audioSource.Play();
         i.SetActive (false);
         uifade.isStart = true;
         isReady = true;

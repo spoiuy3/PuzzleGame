@@ -83,7 +83,8 @@ public class MS_Script : MonoBehaviour
             dungeon_3d.Priority = 0;
             player_3d.Priority = 0;
             dungeon_2d.Priority = 1;
-            tobe.SetActive(true);
+            uifade.isStart = true;
+            Invoke("A", 2f);
             movescript1.canMove = false;
             movescript1.friction = 0;
             Invoke("ResetGame", 6f);
@@ -93,12 +94,16 @@ public class MS_Script : MonoBehaviour
             forest_3d.Priority = 0;
             dungeon_3d.Priority = 0;
             player_3d.Priority = 1;
-            uifade.isStart = true;
+            
         }
     }
     private void ResetGame()
     {
         SceneManager.LoadScene("GameStart");
+    }
+    private void A()
+    {
+        tobe.SetActive(true);
     }
     IEnumerator Delay3()
     {
