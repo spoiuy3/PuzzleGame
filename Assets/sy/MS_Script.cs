@@ -61,7 +61,7 @@ public class MS_Script : MonoBehaviour
     {
 
         yield return new WaitForSecondsRealtime(1f);
-        Time.timeScale = 0f;
+        
     }
     void Delay1()
     {
@@ -77,13 +77,14 @@ public class MS_Script : MonoBehaviour
         {
             StartCoroutine(Delay4());
         }
-        if (order == 11)
+        if (gamesave.clearStage == 11&&gamesave.end==0)
         {
+            gamesave.end++;
             forest_3d.Priority = 0;
             dungeon_3d.Priority = 0;
             player_3d.Priority = 0;
             dungeon_2d.Priority = 1;
-            uifade.isStart = true;
+            Invoke("B", 1.1f);
             Invoke("A", 2f);
             movescript1.canMove = false;
             movescript1.friction = 0;
@@ -104,6 +105,10 @@ public class MS_Script : MonoBehaviour
     private void A()
     {
         tobe.SetActive(true);
+    }
+    void B()
+    {
+        uifade.isStart = true;
     }
     IEnumerator Delay3()
     {

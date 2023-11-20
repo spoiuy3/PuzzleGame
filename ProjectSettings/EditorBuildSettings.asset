@@ -44,4 +44,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/sy/9.unity
     guid: a244267f33c65ac4abc02b97d166b48a
+  - enabled: 1
+    path: Assets/sy/10.unity
+    guid: 18a95bd766cb69740a495ceb2c096b4a
+  - enabled: 1
+    path: Assets/sy/11.unity
+    guid: ed93e62a1aa8bec42b182a2975c4de8b
   m_configObjects: {}

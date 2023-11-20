@@ -3,7 +3,15 @@ guid: 5b55975f957fd974a93916640f0072d9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - myAudioClip1: {fileID: 8300000, guid: f1218d87aba3c214f8c86090c320d7d2, type: 3}
+  - myAudioClip2: {fileID: 8300000, guid: b5216c39f29141f44bb81b2319a3fcc2, type: 3}
+  - myAudioClip3: {fileID: 8300000, guid: c8db9f3ee4e3b0d448afc4907650eacf, type: 3}
+  - myAudioClip4: {fileID: 8300000, guid: 42c7b5d33b133b847b5997a1e307f1f2, type: 3}
+  - pause: {instanceID: 0}
+  - resume: {instanceID: 0}
+  - exit: {instanceID: 0}
+  - restart: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

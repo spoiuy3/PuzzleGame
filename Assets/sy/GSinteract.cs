@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class GSinteract : MonoBehaviour
 {
+    public AudioClip myAudioClip1; // Inspector에서 설정할 오디오 클립
+    public AudioClip myAudioClip2;
+
+    private AudioSource audioSource;
     public GameObject redFire;
     public GameObject redSmoke;
     public GameObject blueFire;
@@ -27,6 +31,11 @@ public class GSinteract : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // AudioSource 컴포넌트 가져오기
+        audioSource = GetComponent<AudioSource>();
+
+        // 오디오 클립 설정
+        audioSource.clip = myAudioClip1;
         uiopen = true;
         ui.SetActive(false);
         bt1.onClick.AddListener(Yes);
@@ -82,6 +91,7 @@ public class GSinteract : MonoBehaviour
             blueSmoke_.loop = true;
             if (Input.GetKeyDown(KeyCode.F)&&uiopen)
             {
+                audioSource.Play();
                 ui.SetActive(true);
                 movescript1.canMove = false;
             }
@@ -152,6 +162,8 @@ public class GSinteract : MonoBehaviour
     }
     void Yes()
     {
+        audioSource.clip = myAudioClip2;
+        audioSource.Play();
         uifade.isStart = true;
         uiopen = false;
         ui.SetActive(false );

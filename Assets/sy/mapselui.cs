@@ -12,7 +12,7 @@ public class mapselui : MonoBehaviour
     public Button bt1;
     public Button bt2;
     public GameObject i;
-    private bool isReady =true;
+    public static bool isReady =true;
     // Start is called before the first frame update
     void Start()
     {// AudioSource 컴포넌트 가져오기
@@ -55,6 +55,8 @@ public class mapselui : MonoBehaviour
     void temp()
     {
         if (gamesave.cine == 0)
+            Invoke("wait", 12f);
+        else if (gamesave.clearStage == 11&&gamesave.end==0)
             Invoke("wait", 12f);
         else
             Invoke("wait", 1f);

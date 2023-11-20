@@ -172,7 +172,7 @@ public class movescript1 : MonoBehaviour
         else
         {
             
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow)&&canMove)
             {
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
@@ -204,7 +204,7 @@ public class movescript1 : MonoBehaviour
             }
             
             
-            else if(Input.GetKey(KeyCode.UpArrow))
+            else if(Input.GetKey(KeyCode.UpArrow) && canMove)
             {
                 if (Input.GetKey(KeyCode.RightArrow))
                 {
@@ -223,7 +223,7 @@ public class movescript1 : MonoBehaviour
                     transform.rotation = desiredQuaternion;
                 }                
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKey(KeyCode.RightArrow) && canMove)
             {
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
@@ -242,7 +242,7 @@ public class movescript1 : MonoBehaviour
                     transform.rotation = desiredQuaternion;
                 }
             }
-            else if (Input.GetKey(KeyCode.DownArrow)&&!Input.GetKey(KeyCode.LeftArrow))
+            else if (Input.GetKey(KeyCode.DownArrow)&&!Input.GetKey(KeyCode.LeftArrow) && canMove)
             {
                 
                 

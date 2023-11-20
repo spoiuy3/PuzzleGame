@@ -17,6 +17,7 @@ public class gameload : MonoBehaviour
         GameLoad();
         Debug.Log(gamesave.cine);
         Debug.Log(gamesave.clearStage);
+        Debug.Log(gamesave.end);
         if (GSinteract.isQuit) 
             GameExit();
     }
@@ -28,6 +29,8 @@ public class gameload : MonoBehaviour
             PlayerPrefs.SetInt("Cine", -1);
         gamesave.clearStage = PlayerPrefs.GetInt("Stage");
         gamesave.cine = PlayerPrefs.GetInt("Cine");
+        gamesave.curStage = PlayerPrefs.GetInt("CurStage");
+        gamesave.end = PlayerPrefs.GetInt("End");
     }
 
     public static void GameExit()
