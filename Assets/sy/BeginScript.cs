@@ -95,12 +95,13 @@ public class BeginScript : MonoBehaviour
             {
                 Player_Walk();
                 Player_Jump();
+                Player_Idle();
             }
             Devil_JumpId();
             Devil_Walk();
             if (!hasFunctionExecuted_order)
             {
-                Invoke("OrderPlus3", 5.0f);
+                Invoke("OrderPlus3", 3.5f);
                 Debug.Log("comming devil");
             }
         }
