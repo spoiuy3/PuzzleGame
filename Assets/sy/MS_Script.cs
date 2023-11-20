@@ -77,10 +77,10 @@ public class MS_Script : MonoBehaviour
         }
         if (order == 11)
         {
-            forest_3d.Priority = 1;
+            forest_3d.Priority = 0;
             dungeon_3d.Priority = 0;
             player_3d.Priority = 0;
-            dungeon_2d.Priority = 0;
+            dungeon_2d.Priority = 1;
         }
         else
         {
