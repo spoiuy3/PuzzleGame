@@ -14,9 +14,14 @@ public class MS_Script : MonoBehaviour
     public CinemachineVirtualCamera dungeon_2d;
     public GameObject player;
     private int order;
+    private int curStage;
     private int clear;
     public GameObject tobe;
-    
+    public GameObject bridge1;
+    public GameObject bridge2;
+    public GameObject block1;
+    public GameObject block2;
+
     void Start()
     {
         
@@ -27,15 +32,39 @@ public class MS_Script : MonoBehaviour
         player_3d.Priority= 0;
         dungeon_2d.Priority = 0;
         order = gamesave.cine;
-        clear = gamesave.curStage;
-        if (clear <= 2 && clear > 0)
-            player.transform.position += new Vector3(16f * clear, 0f, 0f);
-        else if (clear > 2 && clear <= 4)
-            player.transform.position = new Vector3(-38.55f + 16f * (clear - 3), 24.7f, -34.4f);
-        else if (clear > 4 && clear <= 7)
-            player.transform.position = new Vector3(13.3f + 18f * (clear - 5), 24.7f, -34.4f);
+        curStage = gamesave.curStage;
+        clear = gamesave.clearStage;
+        if (curStage <= 2 && curStage > 0)
+            player.transform.position += new Vector3(16f * curStage, 0f, 0f);
+        else if (curStage > 2 && curStage <= 4)
+            player.transform.position = new Vector3(-38.55f + 16f * (curStage - 3), 24.7f, -34.4f);
+        else if (curStage > 4 && curStage <= 7)
+            player.transform.position = new Vector3(13.3f + 18f * (curStage - 5), 24.7f, -34.4f);
+        else if (curStage > 7)
+            player.transform.position = new Vector3(85.9f + 12f * (curStage - 8), 24.7f, -34.4f);
+        if (clear <= 4)
+        {
+            block1.SetActive(true);
+            block2.SetActive(true);
+            bridge1.SetActive(false);
+            bridge2.SetActive(false);
+        }
+
+        else if (clear >4 && clear <= 7)
+        {
+            block1.SetActive(false);
+            block2.SetActive(true);
+            bridge1.SetActive(true);
+            bridge2.SetActive(false);
+        }
         else if (clear > 7)
-            player.transform.position = new Vector3(85.9f + 12f * (clear - 8), 24.7f, -34.4f);
+        {
+            block1.SetActive(false);
+            block2.SetActive(false);
+            bridge1.SetActive(true);
+            bridge2.SetActive(true);
+        }
+
         if (order == 0)
             Delay();
         else
