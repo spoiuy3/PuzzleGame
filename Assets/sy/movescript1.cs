@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class movescript1 : MonoBehaviour
 {
-
+    private float lastdir;
 
     [SerializeField, Range(0f, 100f)]
     private float moveSpeed2 = 5f;
@@ -114,6 +114,7 @@ public class movescript1 : MonoBehaviour
         else
         {
             movement = new Vector3(1.5f * horizontalInput, 1.5f * verticalInput, 0f) * moveSpeed25 * Time.deltaTime;
+            
         }
         
         
@@ -148,7 +149,7 @@ public class movescript1 : MonoBehaviour
             transform.position += movement;
         }
         
-        // 점프 처리
+        
         if (Physics.gravity.y < 0f)
         {
             if (movement.x < 0f)
@@ -170,49 +171,92 @@ public class movescript1 : MonoBehaviour
         }
         else
         {
-            if (movement.x < 0f)
+            
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    Vector3 desiredRotation = new Vector3(-45, -90, 90);
 
+                    // 오일러 각도를 쿼터니언으로 변환하여 설정
+                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                    transform.rotation = desiredQuaternion;
+                }
 
-                Vector3 desiredRotation = new Vector3(0, -90, 90);
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    Vector3 desiredRotation = new Vector3(45, -90, 90);
 
-                // 오일러 각도를 쿼터니언으로 변환하여 설정
-                Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
-                transform.rotation = desiredQuaternion;
+                    // 오일러 각도를 쿼터니언으로 변환하여 설정
+                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                    transform.rotation = desiredQuaternion;
+                }
+                else 
+                {
+                    Vector3 desiredRotation = new Vector3(0, -90, 90);
+
+                    // 오일러 각도를 쿼터니언으로 변환하여 설정
+                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                    transform.rotation = desiredQuaternion;
+                }
+                
 
             }
-            else if (movement.x > 0f)
+            
+            
+            else if(Input.GetKey(KeyCode.UpArrow))
             {
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    Vector3 desiredRotation = new Vector3(-135, -90, 90);
 
-
-                Vector3 desiredRotation = new Vector3(180, -90, 90);
-
-                // 오일러 각도를 쿼터니언으로 변환하여 설정
-                Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
-                transform.rotation = desiredQuaternion;
-
-
-            }
-            else
-            {
-                if (movement.y > 0f)
+                    // 오일러 각도를 쿼터니언으로 변환하여 설정
+                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                    transform.rotation = desiredQuaternion;
+                }
+                else
                 {
                     Vector3 desiredRotation = new Vector3(-90, -90, 90);
 
                     // 오일러 각도를 쿼터니언으로 변환하여 설정
                     Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                     transform.rotation = desiredQuaternion;
-                }
-                else if (movement.y < 0f)
+                }                
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                if (Input.GetKey(KeyCode.DownArrow))
                 {
-                    Vector3 desiredRotation = new Vector3(90, -90, 90);
+                    Vector3 desiredRotation = new Vector3(135, -90, 90);
 
                     // 오일러 각도를 쿼터니언으로 변환하여 설정
                     Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
                     transform.rotation = desiredQuaternion;
                 }
+                else
+                {
+                    Vector3 desiredRotation = new Vector3(180, -90, 90);
 
+                    // 오일러 각도를 쿼터니언으로 변환하여 설정
+                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                    transform.rotation = desiredQuaternion;
+                }
             }
+            else if (Input.GetKey(KeyCode.DownArrow)&&!Input.GetKey(KeyCode.LeftArrow))
+            {
+                
+                
+                    Vector3 desiredRotation = new Vector3(90, -90, 90);
+
+                    // 오일러 각도를 쿼터니언으로 변환하여 설정
+                    Quaternion desiredQuaternion = Quaternion.Euler(desiredRotation);
+                    transform.rotation = desiredQuaternion;
+                
+            }
+
+
+
+
         }
 
 
