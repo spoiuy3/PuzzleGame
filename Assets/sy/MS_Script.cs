@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MS_Script : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MS_Script : MonoBehaviour
     public GameObject player;
     private int order;
     private int clear;
+    public GameObject tobe;
     
     void Start()
     {
@@ -81,13 +83,22 @@ public class MS_Script : MonoBehaviour
             dungeon_3d.Priority = 0;
             player_3d.Priority = 0;
             dungeon_2d.Priority = 1;
+            tobe.SetActive(true);
+            movescript1.canMove = false;
+            movescript1.friction = 0;
+            Invoke("ResetGame", 6f);
         }
         else
         {
             forest_3d.Priority = 0;
             dungeon_3d.Priority = 0;
             player_3d.Priority = 1;
+            uifade.isStart = true;
         }
+    }
+    private void ResetGame()
+    {
+        SceneManager.LoadScene("GameStart");
     }
     IEnumerator Delay3()
     {
