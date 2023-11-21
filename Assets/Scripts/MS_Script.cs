@@ -21,6 +21,7 @@ public class MS_Script : MonoBehaviour
     public GameObject bridge2;
     public GameObject block1;
     public GameObject block2;
+    public GameObject block3;
     public static bool caninput;
 
     void Start()
@@ -64,6 +65,10 @@ public class MS_Script : MonoBehaviour
             block2.SetActive(false);
             bridge1.SetActive(true);
             bridge2.SetActive(true);
+        }
+        else if (clear ==11 && gamesave.end != 0)
+        {
+            block3.SetActive(false);
         }
 
         if (order == 0)
@@ -115,8 +120,10 @@ public class MS_Script : MonoBehaviour
             dungeon_3d.Priority = 0;
             player_3d.Priority = 0;
             dungeon_2d.Priority = 1;
-            Invoke("B", 1.1f);
-            Invoke("A", 2f);
+            block3.GetComponent<Rigidbody>().AddForce(transform.up * 100f, ForceMode.Impulse);
+            block3.GetComponent<Rigidbody>().AddForce(transform.right*100f,ForceMode.Impulse);
+            Invoke("B", 2.1f);
+            Invoke("A", 3f);
             movescript1.canMove = false;
             movescript1.friction = 0;
             Invoke("ResetGame", 6f);

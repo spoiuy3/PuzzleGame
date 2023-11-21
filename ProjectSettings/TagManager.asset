@@ -11,6 +11,7 @@ TagManager:
   - Fire2_5on
   - Fire2_on
   - Chest
+  - Wall
   layers:
   - Default
   - TransparentFX

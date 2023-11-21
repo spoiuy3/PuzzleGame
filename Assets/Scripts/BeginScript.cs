@@ -27,7 +27,7 @@ public class BeginScript : MonoBehaviour
     private bool canRoate;
     private bool canMove;
     private float x;
-    private float y;
+    private float z;
 
     public GameObject player;
     public GameObject devil;
@@ -182,8 +182,8 @@ public class BeginScript : MonoBehaviour
             forest_3d.Priority = 0;
             forest_2d.Priority = 1;
             x = player.transform.localPosition.x;
-            y = player.transform.localPosition.y;
-            player.transform.localPosition = new Vector3 (x, y,-34.94992f);
+            z = player.transform.localPosition.z;
+            player.transform.localPosition = new Vector3 (x, 24.61f, z);
             if (devil.transform.localPosition.y > -0.03223419f)
             {
                 Devil_Jump();
