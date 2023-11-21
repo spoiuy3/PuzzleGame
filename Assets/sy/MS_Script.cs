@@ -42,7 +42,7 @@ public class MS_Script : MonoBehaviour
             player.transform.position = new Vector3(13.3f + 18f * (curStage - 5), 24.7f, -34.4f);
         else if (curStage > 7)
             player.transform.position = new Vector3(85.9f + 12f * (curStage - 8), 24.7f, -34.4f);
-        if (clear <= 4)
+        if (clear <= 3)
         {
             block1.SetActive(true);
             block2.SetActive(true);
@@ -50,14 +50,14 @@ public class MS_Script : MonoBehaviour
             bridge2.SetActive(false);
         }
 
-        else if (clear >4 && clear <= 7)
+        else if (clear >3 && clear < 7)
         {
             block1.SetActive(false);
             block2.SetActive(true);
             bridge1.SetActive(true);
             bridge2.SetActive(false);
         }
-        else if (clear > 7)
+        else if (clear >= 7)
         {
             block1.SetActive(false);
             block2.SetActive(false);
