@@ -183,7 +183,6 @@ public class BeginScript : MonoBehaviour
             forest_2d.Priority = 1;
             x = player.transform.localPosition.x;
             y = player.transform.localPosition.y;
-            player.transform.localScale = new Vector3(6f, 6f, 6f);
             player.transform.localPosition = new Vector3 (x, y,-34.94992f);
             if (devil.transform.localPosition.y > -0.03223419f)
             {
