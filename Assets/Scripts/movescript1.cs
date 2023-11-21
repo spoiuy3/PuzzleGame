@@ -68,7 +68,6 @@ public class movescript1 : MonoBehaviour
 
     private void Update()
     {
-        
         if (Physics.gravity.y < 0f)
         {
             if (Input.GetKey(KeyCode.LeftArrow) && canMove)
@@ -326,7 +325,21 @@ public class movescript1 : MonoBehaviour
             isGrounded = true;
         }
 
+        if(collision.gameObject.CompareTag("Obstacle"))
+        {
+            canMove = false;
+            isObstacle = true;
+            if (!isPlay)
+            {
+                backsource.Stop();
+                deadsource.Play();
+            }
+            isPlay = true;
+            StartCoroutine(DelayedFunction());
+        }
+
     }
+
 
     private void OnCollisionStay(Collision collision)
     {
