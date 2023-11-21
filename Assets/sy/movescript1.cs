@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class movescript1 : MonoBehaviour
 {
     private float lastdir;
-
+    int a = 0;
     [SerializeField, Range(0f, 100f)]
     private float moveSpeed2 = 5f;
         [SerializeField, Range(0f, 100f)]
@@ -68,6 +68,7 @@ public class movescript1 : MonoBehaviour
 
     private void Update()
     {
+        
         if (Physics.gravity.y < 0f)
         {
             if (Input.GetKey(KeyCode.LeftArrow) && canMove)
@@ -178,12 +179,13 @@ public class movescript1 : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f && canMove)
+        if (Input.GetButtonDown("Jump") && isGrounded && Physics.gravity.y < 0f && canMove && a++==0)
         {
             Jump();
+           
         }
 
-        
+
         RaycastHit hit1, hit2;
         if(Physics.gravity.y < 0f)
         {
@@ -211,6 +213,7 @@ public class movescript1 : MonoBehaviour
 
                 }
             }
+            
         }
         
         if(isObstacle)
@@ -218,8 +221,22 @@ public class movescript1 : MonoBehaviour
           
             Player_rotate();
         }
-        
-        
+
+        RaycastHit hit3;
+        if (Physics.gravity.y < 0f)
+        {
+            if (Physics.Raycast(transform.position, Vector3.down, out hit3, 1.3f)) // 여기에서 1.0f는 레이의 길이입니다.
+            {
+                // 충돌한 물체가 벽인지 확인합니다.
+                if (hit3.collider.tag == "Ground") // 벽의 태그에 맞게 수정하세요.
+                {
+                    Debug.Log(" 착지완료!");
+
+                    a = 0;
+
+                }
+            }
+        }
 
 
     }
@@ -292,8 +309,10 @@ public class movescript1 : MonoBehaviour
         // 플레이어에게 y 방향으로 힘을 주어 점프
         GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce / 2, ForceMode.Impulse);
         isGrounded = false; // 점프 후에는 땅에 닿아있지 않음
+        
+       
     }
-
+    
     void OnCollisionEnter(Collision collision)
     {
         // 땅에 닿아 있는지 확인

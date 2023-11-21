@@ -32,6 +32,8 @@ public class interact : MonoBehaviour
     }
     private void Start()
     {
+        redfirecollision = false;
+        bluefirecollision = false;
         rb = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
