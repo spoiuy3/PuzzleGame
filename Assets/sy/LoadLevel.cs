@@ -19,7 +19,7 @@ public class LoadLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isTrig && Input.GetKeyDown(KeyCode.F) && int.Parse(level)<=clearStage+1)
+        if(isTrig && Input.GetKeyDown(KeyCode.F) && int.Parse(level)<=clearStage+1 && MS_Script.caninput)
         {
             
             StartCoroutine(Delay());

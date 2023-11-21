@@ -81,7 +81,7 @@ public class interact : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F)&& !movescript1.isObstacle)
         {
             if (redfirecollision && state == "2d")
             {

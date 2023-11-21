@@ -71,7 +71,7 @@ public class GSinteract : MonoBehaviour
                 play.SetActive(false);
                 if(gamesave.clearStage == -1 && gamesave.cine == -1)
                 {
-                    uifade.isStart = true;
+                    uifade.isStart = true; 
                     StartCoroutine(DelayedFunction3());
                 }
                 else

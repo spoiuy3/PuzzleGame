@@ -21,10 +21,11 @@ public class MS_Script : MonoBehaviour
     public GameObject bridge2;
     public GameObject block1;
     public GameObject block2;
+    public static bool caninput;
 
     void Start()
     {
-        
+        caninput = false;
         gamesave.cine++;
         Physics.gravity = new Vector3(0, -30, 0);
         forest_3d.Priority = 1;
@@ -81,6 +82,7 @@ public class MS_Script : MonoBehaviour
         if(order == 0)
         {
             movescript1.friction = 0f;
+            
         }
         StartCoroutine(Del());
         Invoke("Delay1", 2.0f);
@@ -143,12 +145,14 @@ public class MS_Script : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(10f);
         movescript1.friction = 1f;
+        caninput = true;
         movescript1.canMove = true;
     }
     IEnumerator Delay4()
     {
         yield return new WaitForSecondsRealtime(2f);
         movescript1.friction = 1f;
+        caninput = true;
         movescript1.canMove = true;
     }
 }

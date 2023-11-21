@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class movescript1 : MonoBehaviour
 {
-    private float lastdir;
+    private string lastdir;
     int a = 0;
     [SerializeField, Range(0f, 100f)]
     private float moveSpeed2 = 5f;
@@ -21,15 +21,14 @@ public class movescript1 : MonoBehaviour
     public static bool haveKey;
     public static bool canMove = true;
     public static bool canMoveUI = true;
-    private bool isObstacle;
-    private int childNum1;
+    public static bool isObstacle;
+    
     //private int childNum2;
     Rigidbody rb;
     public static float friction = 1f; // 빙판에서의 마찰력 조절을 위한 변수
     public float slideSpeed = 2f;
     public static Vector3 movement;
-    private float scaleSpeed = 0.008f;
-    private Vector3 currentScale;
+    
     private float horizontalInput;
     private float verticalInput;
     private bool isPlay;
@@ -44,6 +43,7 @@ public class movescript1 : MonoBehaviour
     BoxCollider boxCollider;
     void Start()
     {
+        lastdir = SceneManager.GetActiveScene().name;
         backsource = gameObject.AddComponent<AudioSource>();
         jumpsource = gameObject.AddComponent<AudioSource>();
         deadsource = gameObject.AddComponent<AudioSource>();
@@ -237,7 +237,12 @@ public class movescript1 : MonoBehaviour
                 }
             }
         }
-
+        
+        
+        if(lastdir == "MapSelect" || lastdir == "GameStart")
+        {
+            a = 0;
+        }
 
     }
 
