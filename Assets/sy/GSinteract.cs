@@ -68,6 +68,7 @@ public class GSinteract : MonoBehaviour
             F.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
+                play.SetActive(false);
                 if(gamesave.clearStage == -1 && gamesave.cine == -1)
                 {
                     uifade.isStart = true;
@@ -100,6 +101,7 @@ public class GSinteract : MonoBehaviour
             F.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F)&&uiopen)
             {
+                
                 audioSource.Play();
                 ui.SetActive(true);
                 movescript1.canMove = false;
@@ -173,6 +175,7 @@ public class GSinteract : MonoBehaviour
     }
     void Yes()
     {
+        quit.SetActive(false);
         audioSource.clip = myAudioClip2;
         audioSource.Play();
         uifade.isStart = true;
