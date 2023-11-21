@@ -41,6 +41,7 @@ public class BeginScript : MonoBehaviour
 
     private Vector3 currentScale_devil;
     private Vector3 currentScele_player;
+    private bool isPlay;
 
     void Start()
     {
@@ -62,6 +63,7 @@ public class BeginScript : MonoBehaviour
         n = 0;
         order = 0;
         hasFunctionExecuted_order = false;
+        isPlay = false;
         source.clip = sound;
         source.volume = 0.45f;
         source.Play();
@@ -191,6 +193,12 @@ public class BeginScript : MonoBehaviour
         {
             hasFunctionExecuted_order = false;
             Player_rotate();
+            if(!isPlay)
+            {
+                isPlay = true;
+                audioSource.clip = myAudioClip3;
+                audioSource.Play();
+            }
             if (devil.transform.localPosition.x < 152.0883f)
             {
                 Devil_Walk_();
@@ -255,14 +263,9 @@ public class BeginScript : MonoBehaviour
     {
         if (canJump_player && player.transform.localPosition.y < 26.0f)
         {
-            if(c == 0)
-            {
-                audioSource.clip = myAudioClip3;
-                audioSource.volume = 0.2f;
-                audioSource.Play();
-            }
+            
             player.transform.localPosition += new Vector3(0f, 0.03f, 0f);
-            c++;
+            
         }
         else if (!canJump_player && player.transform.localPosition.y > 24.7f)
         {
