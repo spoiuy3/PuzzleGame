@@ -9,7 +9,6 @@ public class LoadLevel : MonoBehaviour
     private bool isTrig;
     private int clearStage;
     public GameObject Fire;
-    public GameObject player;
 
     void Start()
     {
