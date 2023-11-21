@@ -10,7 +10,7 @@ public class cheatcode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gamesave.clearStage);
+        
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.F1))
         {
             if(gamesave.clearStage <1)
