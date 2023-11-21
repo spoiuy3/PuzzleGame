@@ -32,16 +32,19 @@ public class movescript1 : MonoBehaviour
     private Vector3 currentScale;
     private float horizontalInput;
     private float verticalInput;
+    private bool isPlay;
 
     BoxCollider boxCollider;
     void Start()
     {
+        SoundManager.instance.PlaySound(1);
         canMove = true;
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
         boxCollider = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         isObstacle = false;
+        isPlay = false;
 
     }
 
@@ -87,6 +90,7 @@ public class movescript1 : MonoBehaviour
         
         if(isObstacle)
         {
+          
             Player_rotate();
         }
         
@@ -266,6 +270,7 @@ public class movescript1 : MonoBehaviour
 
     void Jump()
     {
+        SoundManager.instance.PlaySound(2);
         // 플레이어에게 y 방향으로 힘을 주어 점프
         GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce / 2, ForceMode.Impulse);
         isGrounded = false; // 점프 후에는 땅에 닿아있지 않음
@@ -297,15 +302,23 @@ public class movescript1 : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.CompareTag("Obstacle"))
         {
             canMove = false;
             isObstacle = true;
+            if (!isPlay)
+            {
+                SoundManager.instance.PlaySound(3);
+                SoundManager.instance.StopSound(1);
+            }
+            isPlay = true;
             StartCoroutine(DelayedFunction());
         }
     }
+
+
 
     IEnumerator DelayedFunction()
     {
