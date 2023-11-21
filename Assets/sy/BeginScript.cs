@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class BeginScript : MonoBehaviour
 {
+    public AudioClip myAudioClip1; // Inspector에서 설정할 오디오 클립
+    public AudioClip myAudioClip2;
+
+    private AudioSource audioSource;
     private float scaleSpeed = 0.01f;
     private float jumpSpeed = 0.1f;
     private bool getSmall_devil;
@@ -27,13 +31,15 @@ public class BeginScript : MonoBehaviour
     public CinemachineVirtualCamera winter_2d;
     public CinemachineVirtualCamera dungeon_3d;
     public CinemachineVirtualCamera dungeon_2d;
-
+    int a=0;
+    int b = 0;
 
     private Vector3 currentScale_devil;
     private Vector3 currentScele_player;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         forest_3d.Priority = 1;
         forest_2d.Priority = 0;
         winter_3d.Priority = 0;
@@ -115,7 +121,11 @@ public class BeginScript : MonoBehaviour
                 Devil_Walk();
             }
             else
+            {
+                
                 Devil_Idle();
+            }
+                
 
             if (!hasFunctionExecuted_order)
             {
@@ -190,6 +200,12 @@ public class BeginScript : MonoBehaviour
 
     void Devil_Idle()
     {
+        Debug.Log("dddd");
+        if (b++ == 0)
+        {
+            
+            Invoke("Sound2", 0.5f);
+        }
         if (getSmall_devil && currentScale_devil.y > 2.5f)
         {
             currentScale_devil.y -= scaleSpeed;
@@ -290,6 +306,7 @@ public class BeginScript : MonoBehaviour
         }
         else if (devil.transform.localPosition.y < 5.1f && devil.transform.localPosition.y >= 5.0f)
         {
+            a = 0;
             Invoke("DevilLand", 0.1f);
         }
         if (devil.transform.localPosition.y >= -0.33224564f && devil.transform.localPosition.y <= -0.003224564f)
@@ -333,6 +350,7 @@ public class BeginScript : MonoBehaviour
         }
         else if (devil.transform.localPosition.y < 10.1f && devil.transform.localPosition.y >= 10.0f)
         {
+            a = 0;
             Invoke("DevilLand", 0.3f);
         }
     }
@@ -387,6 +405,14 @@ public class BeginScript : MonoBehaviour
     }
     void DevilLand()
     {
+        
+        
+        if (a++ == 0)
+        {
+            audioSource.clip = myAudioClip1;
+            Invoke("Sound", 0.2f);
+        }
+        
         canJump_devil = false;
     }
     void DevilLand_()
@@ -397,7 +423,15 @@ public class BeginScript : MonoBehaviour
     {
         canMove = true;
     }
-
+    void Sound()
+    {
+        audioSource.Play();
+    }
+    void Sound2()
+    {
+        audioSource.clip = myAudioClip2;
+        audioSource.Play();
+    }
     IEnumerator Delay()
     {
         uifade.isStart = true;
