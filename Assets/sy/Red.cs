@@ -24,7 +24,8 @@ public class Red : MonoBehaviour
         state = interact.state;
         if(Input.GetKeyDown(KeyCode.F) && interact.haveKey && state == "2_5d" && onTrigger)
         {
-            gamesave.clearStage = level;
+            if (gamesave.clearStage < level)
+                gamesave.clearStage = level;
             movescript1.canMove = false;
             movescript1.backsource.Stop();
             clearsource.Play();

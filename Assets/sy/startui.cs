@@ -23,6 +23,8 @@ public class startui : MonoBehaviour
     {
         PlayerPrefs.SetInt("Cine", -1);
         PlayerPrefs.SetInt("Stage", -1);
+        PlayerPrefs.SetInt("CurStage", 0);
+        PlayerPrefs.SetInt("End", 0);
         PlayerPrefs.Save();
     }
 }

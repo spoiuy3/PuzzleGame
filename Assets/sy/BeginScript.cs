@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.VisualScripting.Member;
 
 public class BeginScript : MonoBehaviour
 {
+    public AudioClip sound;
+    private AudioSource source;
     public AudioClip myAudioClip1; // Inspector에서 설정할 오디오 클립
     public AudioClip myAudioClip2;
+    public AudioClip myAudioClip3;
 
     private AudioSource audioSource;
     private float scaleSpeed = 0.01f;
@@ -33,12 +37,14 @@ public class BeginScript : MonoBehaviour
     public CinemachineVirtualCamera dungeon_2d;
     int a=0;
     int b = 0;
+    int c = 0;
 
     private Vector3 currentScale_devil;
     private Vector3 currentScele_player;
 
     void Start()
     {
+        source = gameObject.AddComponent<AudioSource>();
         audioSource = GetComponent<AudioSource>();
         forest_3d.Priority = 1;
         forest_2d.Priority = 0;
@@ -56,6 +62,9 @@ public class BeginScript : MonoBehaviour
         n = 0;
         order = 0;
         hasFunctionExecuted_order = false;
+        source.clip = sound;
+        source.volume = 0.45f;
+        source.Play();
     }
 
     // Update is called once per frame
@@ -246,7 +255,14 @@ public class BeginScript : MonoBehaviour
     {
         if (canJump_player && player.transform.localPosition.y < 26.0f)
         {
+            if(c == 0)
+            {
+                audioSource.clip = myAudioClip3;
+                audioSource.volume = 0.2f;
+                audioSource.Play();
+            }
             player.transform.localPosition += new Vector3(0f, 0.03f, 0f);
+            c++;
         }
         else if (!canJump_player && player.transform.localPosition.y > 24.7f)
         {
