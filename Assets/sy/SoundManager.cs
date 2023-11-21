@@ -9,10 +9,14 @@ public class SoundManager : MonoBehaviour
     public AudioClip backsound;
     public AudioClip jumpsound;
     public AudioClip deadsound;
+    public AudioClip boxsound;
+    public AudioClip clearsound;
 
     private AudioSource backsource;
     private AudioSource jumpsource;
     private AudioSource deadsource;
+    private AudioSource boxsource;
+    private AudioSource clearsource;
 
     void Awake()
     {
@@ -33,6 +37,8 @@ public class SoundManager : MonoBehaviour
         backsource = gameObject.AddComponent<AudioSource>();
         jumpsource = gameObject.AddComponent<AudioSource>();
         deadsource = gameObject.AddComponent<AudioSource>();
+        boxsource = gameObject.AddComponent<AudioSource>();
+        clearsource = gameObject.AddComponent<AudioSource>();
 
         // AudioClip 설정
         backsource.clip = backsound;
@@ -41,6 +47,11 @@ public class SoundManager : MonoBehaviour
         jumpsource.loop = false;
         deadsource.clip = deadsound;
         deadsource.loop = false;
+        boxsource.clip = boxsound;
+        boxsource.loop = false;
+        clearsource.clip = clearsound;
+        clearsource.loop = false;
+        jumpsource.volume = 0.2f;
 
     }
 
@@ -58,7 +69,12 @@ public class SoundManager : MonoBehaviour
             case 3:
                 deadsource.Play();
                 break;
-                // 추가적인 사운드가 있다면 case를 계속해서 추가
+            case 4:
+                boxsource.Play(); 
+                break;
+            case 5:
+                clearsource.Play();
+                break;
         }
     }
 
@@ -76,7 +92,12 @@ public class SoundManager : MonoBehaviour
             case 3:
                 deadsource.Stop();
                 break;
-                // 추가적인 사운드가 있다면 case를 계속해서 추가
+            case 4:
+                boxsource.Stop();
+                break;
+            case 5:
+                clearsource.Stop();
+                break;
         }
     }
 }

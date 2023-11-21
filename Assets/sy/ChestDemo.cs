@@ -51,6 +51,7 @@ public class ChestDemo : MonoBehaviour {
 
     void Open()
     {
+        SoundManager.instance.PlaySound(4);
         chestAnim.SetTrigger("open");
         opened = true;
         haveKey = true;

@@ -21,6 +21,8 @@ public class Red : MonoBehaviour
         {
             gamesave.clearStage = level;
             movescript1.canMove = false;
+            SoundManager.instance.StopSound(1);
+            SoundManager.instance.PlaySound(5);
             StartCoroutine(Delay());
         }
     }
