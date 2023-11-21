@@ -43,6 +43,7 @@ public class SoundManager : MonoBehaviour
         // AudioClip ¼³Á¤
         backsource.clip = backsound;
         backsource.loop = true;
+        backsource.volume = 0.3f;
         jumpsource.clip = jumpsound;
         jumpsource.loop = false;
         deadsource.clip = deadsound;
