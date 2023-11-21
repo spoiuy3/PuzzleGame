@@ -27,6 +27,10 @@ public class gameload : MonoBehaviour
             PlayerPrefs.SetInt("Stage", -1);
         if (!PlayerPrefs.HasKey("Cine"))
             PlayerPrefs.SetInt("Cine", -1);
+        if (!PlayerPrefs.HasKey("CurStage"))
+            PlayerPrefs.SetInt("CurStage", 0);
+        if (!PlayerPrefs.HasKey("End"))
+            PlayerPrefs.SetInt("End", 0);
         gamesave.clearStage = PlayerPrefs.GetInt("Stage");
         gamesave.cine = PlayerPrefs.GetInt("Cine");
         gamesave.curStage = PlayerPrefs.GetInt("CurStage");

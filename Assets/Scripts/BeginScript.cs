@@ -90,7 +90,7 @@ public class BeginScript : MonoBehaviour
             if (!hasFunctionExecuted_order)
             {
                 Invoke("OrderPlus1", 3.2f);
-                Debug.Log("오른쪽으로 jump");
+                
             }
         }
         if (order == 2)
@@ -104,7 +104,7 @@ public class BeginScript : MonoBehaviour
             if (!hasFunctionExecuted_order)
             {
                 Invoke("OrderPlus2", 2.5f);
-                Debug.Log("왼쪽으로 jump");
+                
             }
         }
         else if (order == 3)
@@ -121,7 +121,7 @@ public class BeginScript : MonoBehaviour
             if (!hasFunctionExecuted_order)
             {
                 Invoke("OrderPlus3", 3.5f);
-                Debug.Log("comming devil");
+                
             }
         }
         else if(order == 4)
@@ -143,7 +143,7 @@ public class BeginScript : MonoBehaviour
             if (!hasFunctionExecuted_order)
             {
                 Invoke("OrderPlus4", 1.0f);
-                Debug.Log("Devil_Idle");
+                
             }
         }
         else if (order == 5)
@@ -155,7 +155,7 @@ public class BeginScript : MonoBehaviour
             if (!hasFunctionExecuted_order)
             {
                 Invoke("OrderPlus5", 2.3f);
-                Debug.Log("Devil_Angry");
+                
             }
         }
 
@@ -172,7 +172,7 @@ public class BeginScript : MonoBehaviour
             if (!hasFunctionExecuted_order)
             {
                 Invoke("OrderPlus6", 1.7f);
-                Debug.Log("Devil_Jump");
+                
             }
         }    
         
@@ -191,7 +191,7 @@ public class BeginScript : MonoBehaviour
             if (!hasFunctionExecuted_order)
             {
                 Invoke("OrderPlus7", 2.5f);
-                Debug.Log("dungeon_2d");
+                
             }
         }
         else if (order == 8)
@@ -211,7 +211,7 @@ public class BeginScript : MonoBehaviour
             if (!hasFunctionExecuted_order)
             {
                 Invoke("OrderPlus8", 4.0f);
-                Debug.Log("Player_rotate");
+                
             }
         }
         else if (order == 9)
@@ -222,7 +222,7 @@ public class BeginScript : MonoBehaviour
 
     void Devil_Idle()
     {
-        Debug.Log("dddd");
+        
         if (b++ == 0)
         {
             

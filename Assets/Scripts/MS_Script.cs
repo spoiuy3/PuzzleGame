@@ -23,6 +23,7 @@ public class MS_Script : MonoBehaviour
     public GameObject block2;
     public GameObject block3;
     public static bool caninput;
+    float torqueForce = 10f;
 
     void Start()
     {
@@ -44,6 +45,18 @@ public class MS_Script : MonoBehaviour
             player.transform.position = new Vector3(13.3f + 18f * (curStage - 5), 24.7f, -34.4f);
         else if (curStage > 7)
             player.transform.position = new Vector3(85.9f + 12f * (curStage - 8), 24.7f, -34.4f);
+        InvokeRepeating("Up", 1, 0.5f);
+
+        if (order == 0)
+            Delay();
+        else
+            Delay2();
+    }
+
+    // Update is called once per frame
+    private void Up()
+    {
+        clear = gamesave.clearStage;
         if (clear <= 3)
         {
             block1.SetActive(true);
@@ -52,7 +65,7 @@ public class MS_Script : MonoBehaviour
             bridge2.SetActive(false);
         }
 
-        else if (clear >3 && clear < 7)
+        else if (clear > 3 && clear < 7)
         {
             block1.SetActive(false);
             block2.SetActive(true);
@@ -66,21 +79,10 @@ public class MS_Script : MonoBehaviour
             bridge1.SetActive(true);
             bridge2.SetActive(true);
         }
-        else if (clear ==11 && gamesave.end != 0)
+        else if (clear == 11 && gamesave.end != 0)
         {
             block3.SetActive(false);
         }
-
-        if (order == 0)
-            Delay();
-        else
-            Delay2();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     void Delay()
     {
@@ -120,13 +122,12 @@ public class MS_Script : MonoBehaviour
             dungeon_3d.Priority = 0;
             player_3d.Priority = 0;
             dungeon_2d.Priority = 1;
-            block3.GetComponent<Rigidbody>().AddForce(transform.up * 100f, ForceMode.Impulse);
-            block3.GetComponent<Rigidbody>().AddForce(transform.right*100f,ForceMode.Impulse);
-            Invoke("B", 2.1f);
-            Invoke("A", 3f);
+            Invoke("C", 1f);
+            Invoke("B", 3.1f);
+            Invoke("A", 4f);
             movescript1.canMove = false;
             movescript1.friction = 0;
-            Invoke("ResetGame", 6f);
+            Invoke("ResetGame", 8f);
         }
         else
         {
@@ -147,6 +148,18 @@ public class MS_Script : MonoBehaviour
     void B()
     {
         uifade.isStart = true;
+    }
+    void C()
+    {
+        block3.GetComponent<Rigidbody>().AddForce(transform.up * 100f, ForceMode.Impulse);
+        block3.GetComponent<Rigidbody>().AddForce(transform.forward * 100f, ForceMode.Impulse);
+        block3.GetComponent<Rigidbody>().AddForce(transform.right * 10f, ForceMode.Impulse);
+        Vector3 randomTorque = new Vector3(
+                Random.Range(-torqueForce, torqueForce),
+                Random.Range(-torqueForce, torqueForce),
+                Random.Range(-torqueForce, torqueForce)
+            );
+        block3.GetComponent<Rigidbody>().AddTorque(randomTorque, ForceMode.Impulse);
     }
     IEnumerator Delay3()
     {
