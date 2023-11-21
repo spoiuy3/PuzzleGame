@@ -33,11 +33,29 @@ public class movescript1 : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private bool isPlay;
+    public AudioClip jumpsound;
+    public AudioClip deadsound;
+    public AudioClip backsound;
+    private AudioSource jumpsource;
+    private AudioSource deadsource;
+    public static AudioSource backsource;
+
 
     BoxCollider boxCollider;
     void Start()
     {
-        SoundManager.instance.PlaySound(1);
+        backsource = gameObject.AddComponent<AudioSource>();
+        jumpsource = gameObject.AddComponent<AudioSource>();
+        deadsource = gameObject.AddComponent<AudioSource>();
+        backsource.clip = backsound;
+        backsource.loop = true;
+        backsource.volume = 0.3f;
+        jumpsource.clip = jumpsound;
+        jumpsource.loop = false;
+        deadsource.clip = deadsound;
+        deadsource.loop = false;
+        jumpsource.volume = 0.2f;
+        backsource.Play();
         canMove = true;
         level = SceneManager.GetActiveScene().name;
         haveKey = false;
@@ -270,7 +288,7 @@ public class movescript1 : MonoBehaviour
 
     void Jump()
     {
-        SoundManager.instance.PlaySound(2);
+        jumpsource.Play();
         // 플레이어에게 y 방향으로 힘을 주어 점프
         GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce / 2, ForceMode.Impulse);
         isGrounded = false; // 점프 후에는 땅에 닿아있지 않음
@@ -310,8 +328,8 @@ public class movescript1 : MonoBehaviour
             isObstacle = true;
             if (!isPlay)
             {
-                SoundManager.instance.PlaySound(3);
-                SoundManager.instance.StopSound(1);
+                backsource.Stop();
+                deadsource.Play();
             }
             isPlay = true;
             StartCoroutine(DelayedFunction());

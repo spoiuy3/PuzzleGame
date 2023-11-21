@@ -10,13 +10,21 @@ public class ChestDemo : MonoBehaviour {
     public bool opened;
     private bool onTrigger;
     public bool haveKey = false;
-    
+    public AudioClip boxsound;
+    private AudioSource boxsource;
+
     public bool HaveKey()
     {
         return haveKey;
     }
-	// Use this for initialization
-	void Awake ()
+    // Use this for initialization
+    private void Start()
+    {
+        boxsource = gameObject.AddComponent<AudioSource>();
+        boxsource.clip = boxsound;
+        boxsource.loop = false;
+    }
+    void Awake ()
     {
         haveKey = false;
         //get the Animator component from the chest;
@@ -51,7 +59,7 @@ public class ChestDemo : MonoBehaviour {
 
     void Open()
     {
-        SoundManager.instance.PlaySound(4);
+        boxsource.Play();
         chestAnim.SetTrigger("open");
         opened = true;
         haveKey = true;

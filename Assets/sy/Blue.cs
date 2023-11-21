@@ -8,10 +8,15 @@ public class Blue : MonoBehaviour
     private string state;
     public int level;
     private bool onTrigger;
+    public AudioClip clearsound;
+    private AudioSource clearsource;
 
     void Start()
     {
         onTrigger = false;
+        clearsource = gameObject.AddComponent<AudioSource>();
+        clearsource.clip = clearsound;
+        clearsource.loop = false;
     }
     void Update()
     {
@@ -21,8 +26,8 @@ public class Blue : MonoBehaviour
         {
             gamesave.clearStage = level;
             movescript1.canMove = false;
-            SoundManager.instance.StopSound(1);
-            SoundManager.instance.PlaySound(5);
+            movescript1.backsource.Stop();
+            clearsource.Play();
             StartCoroutine(Delay());
         }
     }
