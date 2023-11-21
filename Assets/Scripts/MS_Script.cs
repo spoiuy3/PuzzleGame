@@ -129,6 +129,13 @@ public class MS_Script : MonoBehaviour
             movescript1.friction = 0;
             Invoke("ResetGame", 8f);
         }
+        else if (gamesave.clearStage == 11 && gamesave.end > 0)
+        {
+            block3.SetActive(false);
+            forest_3d.Priority = 0;
+            dungeon_3d.Priority = 0;
+            player_3d.Priority = 1;
+        }
         else
         {
             forest_3d.Priority = 0;
@@ -139,6 +146,7 @@ public class MS_Script : MonoBehaviour
     }
     private void ResetGame()
     {
+
         SceneManager.LoadScene("GameStart");
     }
     private void A()
