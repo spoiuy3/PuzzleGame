@@ -201,6 +201,42 @@ public class movescript1 : MonoBehaviour
 
                 }
             }
+            if (Physics.Raycast(transform.position+Vector3.up*0.5f, Vector3.right, out hit1, 1f)) // 여기에서 1.0f는 레이의 길이입니다.
+            {
+                // 충돌한 물체가 벽인지 확인합니다.
+                if (hit1.collider.tag == "Ground") // 벽의 태그에 맞게 수정하세요.
+                {
+                    Debug.Log("벽과 충돌했습니다!");
+
+                    Vector3 move = new Vector3(0.1f, 0, 0);
+                    transform.position -= move;
+
+                }
+            }
+            if (Physics.Raycast(transform.position-Vector3.up*1f, Vector3.right, out hit1, 1f)) // 여기에서 1.0f는 레이의 길이입니다.
+            {
+                // 충돌한 물체가 벽인지 확인합니다.
+                if (hit1.collider.tag == "Ground") // 벽의 태그에 맞게 수정하세요.
+                {
+                    Debug.Log("벽과 충돌했습니다!");
+
+                    Vector3 move = new Vector3(0.1f, 0, 0);
+                    transform.position -= move;
+
+                }
+            }
+            if (Physics.Raycast(transform.position+Vector3.up*0.5f, Vector3.left, out hit2, 1f)) // 여기에서 1.0f는 레이의 길이입니다.
+            {
+                // 충돌한 물체가 벽인지 확인합니다.
+                if (hit2.collider.tag == "Ground") // 벽의 태그에 맞게 수정하세요.
+                {
+                    Debug.Log("벽과 충돌했습니다!");
+
+                    Vector3 move = new Vector3(-0.1f, 0, 0);
+                    transform.position -= move;
+
+                }
+            }
             if (Physics.Raycast(transform.position, Vector3.left, out hit2, 1f)) // 여기에서 1.0f는 레이의 길이입니다.
             {
                 // 충돌한 물체가 벽인지 확인합니다.
@@ -213,7 +249,19 @@ public class movescript1 : MonoBehaviour
 
                 }
             }
-            
+            if (Physics.Raycast(transform.position-Vector3.up*1f, Vector3.left, out hit2, 1f)) // 여기에서 1.0f는 레이의 길이입니다.
+            {
+                // 충돌한 물체가 벽인지 확인합니다.
+                if (hit2.collider.tag == "Ground") // 벽의 태그에 맞게 수정하세요.
+                {
+                    Debug.Log("벽과 충돌했습니다!");
+
+                    Vector3 move = new Vector3(-0.1f, 0, 0);
+                    transform.position -= move;
+
+                }
+            }
+
         }
         
         if(isObstacle)
@@ -240,6 +288,17 @@ public class movescript1 : MonoBehaviour
             verticalInput = Input.GetAxis("Vertical");
         }
 
+        if (Physics.gravity.y < 0)
+        {
+            if(rb.velocity.y < 0)
+            {
+                movement = Vector3.zero;
+            }
+            else
+            {
+                
+            }
+        }
 
         // 이동 벡터 계산
         if (Physics.gravity.y < 0f)
@@ -311,6 +370,7 @@ public class movescript1 : MonoBehaviour
         {
             isGrounded = true;
         }
+        
 
         if(collision.gameObject.CompareTag("Obstacle"))
         {

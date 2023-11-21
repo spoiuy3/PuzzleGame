@@ -345,7 +345,7 @@ public class BeginScript : MonoBehaviour
     {
         if (canRoate && devil.transform.localRotation.z > -0.15f)
         {
-            Debug.Log(devil.transform.localRotation.z);
+            
             devil.transform.Rotate(Vector3.forward, -0.7f);
         }
         else if (!canRoate && devil.transform.localRotation.z < 0.15f)
