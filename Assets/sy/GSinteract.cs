@@ -27,7 +27,8 @@ public class GSinteract : MonoBehaviour
     public Button bt1;
     public Button bt2;
     public GameObject ui;
-
+    public GameObject play;
+    public GameObject quit;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +62,7 @@ public class GSinteract : MonoBehaviour
             redSmoke.SetActive(true);
             redFire_.loop = true;
             redSmoke_.loop = true;
+            play.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if(gamesave.clearStage == -1 && gamesave.cine == -1)
@@ -81,6 +83,7 @@ public class GSinteract : MonoBehaviour
             redSmoke_.loop = false;
             StartCoroutine(DelayedFunction1());
             redout = false;
+            play.SetActive(false);
         }
         if (bluefirecollision)
         {
@@ -89,6 +92,7 @@ public class GSinteract : MonoBehaviour
             blueSmoke.SetActive(true);
             blueFire_.loop = true;
             blueSmoke_.loop = true;
+            quit.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F)&&uiopen)
             {
                 audioSource.Play();
@@ -102,6 +106,7 @@ public class GSinteract : MonoBehaviour
             blueSmoke_.loop = false;
             StartCoroutine(DelayedFunction2());
             blueout = false;
+            quit.SetActive(false);
         }
     }
 
@@ -176,3 +181,5 @@ public class GSinteract : MonoBehaviour
         ui.SetActive(false);
     }
 }
+
+
