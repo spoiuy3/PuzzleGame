@@ -158,11 +158,7 @@ public class movescript1 : MonoBehaviour
 
         }
         
-        if(isObstacle)
-        {
-          
-            Player_rotate();
-        }
+        
         
         
         
@@ -354,7 +350,11 @@ public class movescript1 : MonoBehaviour
 
         }
 
+        if (isObstacle)
+        {
 
+            Player_rotate();
+        }
 
     }
 

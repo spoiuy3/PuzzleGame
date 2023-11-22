@@ -45,7 +45,7 @@ public class MS_Script : MonoBehaviour
             player.transform.position = new Vector3(13.3f + 18f * (curStage - 5), 24.7f, -34.4f);
         else if (curStage > 7)
             player.transform.position = new Vector3(85.9f + 12f * (curStage - 8), 24.7f, -34.4f);
-        InvokeRepeating("Up", 1, 0.5f);
+        InvokeRepeating("Up", 0, 0.5f);
 
         if (order == 0)
             Delay();
