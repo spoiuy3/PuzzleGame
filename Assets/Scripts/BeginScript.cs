@@ -438,6 +438,7 @@ public class BeginScript : MonoBehaviour
         if (a++ == 0)
         {
             audioSource.clip = myAudioClip1;
+            audioSource.volume = 1.1f;
             Invoke("Sound", 0.2f);
         }
         
@@ -458,6 +459,7 @@ public class BeginScript : MonoBehaviour
     void Sound2()
     {
         audioSource.clip = myAudioClip2;
+        audioSource.volume = 1f;
         audioSource.Play();
     }
     IEnumerator Delay()
