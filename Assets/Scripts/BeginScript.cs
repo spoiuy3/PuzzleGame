@@ -179,8 +179,7 @@ public class BeginScript : MonoBehaviour
         else if (order == 7)
         {
             hasFunctionExecuted_order = false;
-            forest_3d.Priority = 0;
-            forest_2d.Priority = 1;
+            Invoke("Cam", 1f);
             x = player.transform.localPosition.x;
             z = player.transform.localPosition.z;
             player.transform.localPosition = new Vector3 (x, 24.61f, z);
@@ -220,6 +219,11 @@ public class BeginScript : MonoBehaviour
         }
     }
 
+    void Cam()
+    {
+        forest_3d.Priority = 0;
+        forest_2d.Priority = 1;
+    }
     void Devil_Idle()
     {
         
