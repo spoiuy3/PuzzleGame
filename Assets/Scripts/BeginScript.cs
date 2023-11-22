@@ -72,7 +72,7 @@ public class BeginScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(order ==0)
         {

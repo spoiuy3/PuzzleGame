@@ -19,7 +19,7 @@ public class Tracker : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Physics.gravity.z != 0)
         {

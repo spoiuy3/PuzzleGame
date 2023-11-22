@@ -57,7 +57,7 @@ public class ChangeCamera : MonoBehaviour
         }
         
     }
-    void Update()
+    void FixedUpdate()
     {
         
         if (isRotating)
